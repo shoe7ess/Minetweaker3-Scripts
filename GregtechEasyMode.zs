@@ -158,15 +158,12 @@ Macerator.addRecipe(<IC2:itemDust:6> * 2, <ore:oreSilver>);
 Macerator.addRecipe(<IC2:itemDust:7> * 2, <ore:oreTin>);
 Macerator.addRecipe(SteelDust * 2, <ore:oreSteel>);
 
-##----Immibis Rotary Macerator Placeholder----##
-
-
 #----- Gregtech Recipe Changes/Additions -----#
 
 # Steel Dust Crafting and Processing
 recipes.addShapeless(SteelDust, [<ore:dustIron>, <ore:dustCoal> * 2]);
 
-# NAND Chip
+# NAND Chip from Redstone
 recipes.addShapeless(NANDChip, [Redstone, Redstone]);
 
 

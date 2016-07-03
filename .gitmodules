@@ -1,3 +1,6 @@
 [submodule "MineTweaker3-v3.0.10B"]
 	path = MineTweaker3-v3.0.10B
 	url = https://github.com/shoe7ess/MineTweaker3-v3.0.10B
+[submodule "MineTweaker3-Scripts"]
+	path = MineTweaker3-Scripts
+	url = C:/Users/Mr Rebooto/AppData/Local/GitHub/PortableGit_d76a6a98c9315931ec4927243517bc09e9b731a0/MineTweaker3-Scripts

@@ -62,7 +62,6 @@ recipes.addShaped(ElectronicCircuit, [
 [<ore:wireCopper>, IronPlate, <ore:wireCopper>],
 [<ore:wireCopper>, Redstone, <ore:wireCopper>]]);
 
-
 recipes.addShaped(ElectronicCircuit * 2, [
 [<ore:wireCopper>, <ore:wireCopper>, <ore:wireCopper>],
 [<ore:ingotElectrum>, IronPlate, <ore:ingotElectrum>],
@@ -118,22 +117,22 @@ recipes.addShaped(REBattery, [
 [TinCasing, Redstone, TinCasing],
 [TinCasing, Redstone, TinCasing]]);
 
-# AdvREBattery
+# Advanced RE-Battery
 recipes.addShaped(AdvREBattery, [
 [<IC2:itemCable>, BronzeCasing, <IC2:itemCable>],
 [BronzeCasing, <ore:dustSulfur>, BronzeCasing],
 [BronzeCasing, <ore:dustLead>, BronzeCasing]]);
 
-# EnergyCrystal
+# Energy Crystal
 recipes.addShapeless(EnergyCrystal, [EnergiumDust * 9]);
 
-# LapotronCrystal
+# Lapotron Crystal
 recipes.addShaped(LapotronCrystal, [
 [<ore:dustLapis>, AdvancedCircuit, <ore:dustLapis>],
 [<ore:dustLapis>, EnergyCrystalCharge, <ore:dustLapis>],
 [<ore:dustLapis>, AdvancedCircuit, <ore:dustLapis>]]);
 
-# Raw Carbon Fibre
+# Raw Carbon Fibre from Coal Dust
 recipes.addShapedMirrored(RawCarbonFibre, [
 [<ore:dustCoal>, <ore:dustCoal>, null],
 [<ore:dustCoal>, <ore:dustCoal>, null],

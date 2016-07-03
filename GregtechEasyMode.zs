@@ -1,20 +1,22 @@
 # Name: GregtechEasyMode.zs
+# Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
 # Author: shoe7ess
-# Purpose: Remove some disabled IC² restrictions from GregTech
+# Purpose: Make IC² and GregTech work as they did in 1.4:
+# i.e. Create IC² T1 Machines > then T2 Machines > and finally Advanced Gregtech Machines is possible again
 
 import mods.ic2.Macerator;
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
-# General Coal to Charcoal Converter
+# General Coal to Charcoal Converter (Just a little helpful script that allows coal/charcoal to be placed in a crafting grid and converted to its' counterpart)
 recipes.addShapeless(<minecraft:coal:0>, [<minecraft:coal:1>]);
 recipes.addShapeless(<minecraft:coal:1>, [<minecraft:coal:0>]);
 
 #------------------------- Gregtech IC² Compatability ----------------------#
 
 #================ Variables ================#
-val ElectricFurnace = <IC2:blockMachine:2>;
-val InductionFurnace = <IC2:blockMachine:13>;
+val ElectricFurnace = <IC2:blockMachine:2>; # Not used yet, if I find any GT Dusts unable to be processed by this machine I will add them
+val InductionFurnace = <IC2:blockMachine:13>; # See Above
 val MachineCasing = <IC2:blockMachine:0>;
 val IronPlate = <ore:plateIron>;
 val ElectronicCircuit = <IC2:itemPartCircuit>;
@@ -45,7 +47,7 @@ val NANDChip = <gregtech:gt.metaitem.01:32700>;
 # Empty Cell
 recipes.addShapeless(<IC2:itemCellEmpty> * 3, [<ore:plateTin>]);
 
-# Basic Machine Casing
+# Basic Machine Casing (Just 8 Iron Plates in a circle
 recipes.addShaped(MachineCasing, [
 [IronPlate, IronPlate, IronPlate],
 [IronPlate, null, IronPlate],
@@ -85,7 +87,7 @@ recipes.addShaped(EnergiumDust * 9, [
 [DiamondDust, Redstone, DiamondDust],
 [Redstone, DiamondDust, Redstone]]);
 
-# IC² Ingot->Plate Stacking
+# IC² 2x Ingot-> Double Plate Stacking possible with IC² Forge Hammer
 recipes.addShapeless(<gregtech:gt.metaitem.01:18035>, [<ore:ingotCopper>, <ore:ingotCopper>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18057>, [<ore:ingotTin>, <ore:ingotTin>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18300>, [<ore:ingotBronze>, <ore:ingotBronze>, ForgeHammer]);
@@ -94,7 +96,7 @@ recipes.addShapeless(<gregtech:gt.metaitem.01:18032>, [<ore:ingotIron>, <ore:ing
 recipes.addShapeless(<gregtech:gt.metaitem.01:18089>, [<ore:ingotLead>, <ore:ingotLead>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18303>, [<ore:ingotElectrum>, <ore:ingotElectrum>, ForgeHammer]);
 
-# IC² Plate Stacking
+# IC² Plate-> Double Plate Stacking
 recipes.addShapeless(<gregtech:gt.metaitem.01:18035>, [<ore:plateCopper>, <ore:plateCopper>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18057>, [<ore:plateTin>, <ore:plateTin>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18300>, [<ore:plateBronze>, <ore:platetBronze>, ForgeHammer]);
@@ -103,7 +105,7 @@ recipes.addShapeless(<gregtech:gt.metaitem.01:18032>, [<ore:plateIron>, <ore:pla
 recipes.addShapeless(<gregtech:gt.metaitem.01:18089>, [<ore:plateLead>, <ore:plateLead>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18303>, [<ore:plateElectrum>, <ore:plateElectrum>, ForgeHammer]);
 
-# Item Casings
+# Item Casings with ForgeHammer (This may be redundant)
 recipes.addShapeless(CopperCasing * 2, [<ore:plateCopper>, ForgeHammer]);
 recipes.addShapeless(TinCasing * 2, [<ore:plateTin>, ForgeHammer]);
 recipes.addShapeless(BronzeCasing * 2, [<ore:plateBronze>, ForgeHammer]);
@@ -162,7 +164,7 @@ Macerator.addRecipe(SteelDust * 2, <ore:oreSteel>);
 # Steel Dust Crafting and Processing
 recipes.addShapeless(SteelDust, [<ore:dustIron>, <ore:dustCoal> * 2]);
 
-# NAND Chip from Redstone
+# NAND Chip from 2xRedstone
 recipes.addShapeless(NANDChip, [Redstone, Redstone]);
 
 

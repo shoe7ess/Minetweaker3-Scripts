@@ -8,6 +8,8 @@ import mods.ic2.Macerator;
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
+print("Initializing 'GregtechEasyMode.zs' with IC2 Recipe Changes Minetweaker3 Script");
+
 # General Coal to Charcoal Converter (Just a little helpful script that allows coal/charcoal to be placed in a crafting grid and converted to its' counterpart)
 recipes.addShapeless(<minecraft:coal:0>, [<minecraft:coal:1>]);
 recipes.addShapeless(<minecraft:coal:1>, [<minecraft:coal:0>]);

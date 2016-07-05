@@ -144,9 +144,11 @@ recipes.addShapedMirrored(RedBrickDoubleSlab, [
 [RedBrickSlab, null, null],
 [RedBrickSlab, null, null]]);
 
-#======== Natura Crafting Tables made with ExtraBiomexXL Wood ========#
+#======== Natura Recipes made with ExtraBiomexXL Wood ========#
 
 #----- Remove Existing Crafting Table Recipes -----#
+# Comment the following lines out if you do not use Natura by 
+# placing # or // in front of each line or just delete them altogether
 recipes.removeShaped(CraftingTable, [
 [SakuraPlanks, SakuraPlanks, null],
 [SakuraPlanks, SakuraPlanks, null]]);

@@ -48,6 +48,7 @@ val RedCobblestoneDoubleSlab = <ExtrabiomesXL:double_slabRedRock>;
 val RedRockDoubleSlab = <ExtrabiomesXL:double_slabRedRock:1>;
 val RedBrickDoubleSlab = <ExtrabiomesXL:double_slabRedRock:2>;
 #---- Crafting Tables ----#
+val CraftingTable = <minecraft:workbench>;
 val SakuraWoodTable = <Natura:Natura.workbench>;
 val FirWoodTable =  <Natura:Natura.workbench:1>;
 val CypressWoodTable = <Natura:Natura.workbench:2>;
@@ -112,7 +113,7 @@ recipes.addShapedMirrored(SakuraDoubleSlab, [
 recipes.addShapedMirrored(RedwoodDoubleSlab, [
 [RedwoodSlab, null, null],
 [RedwoodSlab, null, null]]);
-recipes.addShapedMirrored(FirWoodDoubleSlab, [
+recipes.addShapedMirrored(FirwoodDoubleSlab, [
 [FirwoodPlanks, FirwoodPlanks, null],
 [FirwoodPlanks, FirwoodPlanks, null]]);
 recipes.addShapedMirrored(AcaciaDoubleSlab, [
@@ -145,6 +146,34 @@ recipes.addShapedMirrored(RedBrickDoubleSlab, [
 
 #======== Natura Crafting Tables made with ExtraBiomexXL Wood ========#
 
+#----- Remove Existing Crafting Table Recipes -----#
+recipes.removeShaped(CraftingTable, [
+[SakuraPlanks, SakuraPlanks, null],
+[SakuraPlanks, SakuraPlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[FirwoodPlanks, FirwoodPlanks, null],
+[FirwoodPlanks, FirwoodPlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[CypressPlanks, CypressPlanks, null],
+[CypressPlanks, CypressPlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[JapaneseMaplePlanks, JapaneseMaplePlanks, null],
+[JapaneseMaplePlanks, JapaneseMaplePlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[AutumnPlanks, AutumnPlanks, null],
+[AutumnPlanks, AutumnPlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[BaldCypressPlanks, BaldCypressPlanks, null],
+[BaldCypressPlanks, BaldCypressPlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[RedwoodPlanks, RedwoodPlanks, null],
+[RedwoodPlanks, RedwoodPlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[AcaciaPlanks, AcaciaPlanks, null],
+[AcaciaPlanks, AcaciaPlanks, null]]);
+recipes.removeShaped(CraftingTable, [
+[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks, null],
+[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks, null]]);
 #---------- Crafting Table Crafting ----------#
 recipes.addShapedMirrored(SakuraWoodTable, [
 [SakuraPlanks, SakuraPlanks, null],

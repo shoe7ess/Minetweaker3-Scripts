@@ -1,5 +1,6 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
+# Script Version: GregtechEasyMode v1.0.0e
 # Author: shoe7ess
 # Purpose: Make IC² and GregTech work as they did in 1.4:
 # i.e. Create IC² T1 Machines > then T2 Machines > and finally Advanced Gregtech Machines is possible again
@@ -9,10 +10,7 @@ import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
 print("Initializing 'GregtechEasyMode.zs' with IC2 Recipe Changes Minetweaker3 Script");
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 # General Coal to Charcoal Converter (Just a little helpful script that allows coal/charcoal to be placed in a crafting grid and converted to its' counterpart)
 recipes.addShapeless(<minecraft:coal:0>, [<minecraft:coal:1>]);
 recipes.addShapeless(<minecraft:coal:1>, [<minecraft:coal:0>]);

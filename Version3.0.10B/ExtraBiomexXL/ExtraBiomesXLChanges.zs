@@ -1,7 +1,8 @@
 # Name: ExtraBiomesXLChanges
-# Version Information: ExtraBiomesXLChanges v3.16.4, Minecraft v1.7.10
+# Version Information: ExtraBiomesXL v3.16.4, Natura v2.2.0.1, Minecraft v1.7.10
+# Script Version: v1.0.0c
 # Author: shoe7ess
-# Purpose: Allows normal slab creation with Planks
+# Purpose: Allows normal slab creation with Planks as well as Natura supprot/integration
 
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;

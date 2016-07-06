@@ -1,16 +1,19 @@
 # Name: ExtraBiomesXLChanges
-# Version Information: ExtraBiomesXLChanges v3.16.4, Minecraft v1.7.10
+# Version Information: ExtraBiomesXLChanges v3.16.4, Minecraft v1.7.10, Extra Utilities
 # Author: shoe7ess
-# Purpose: Allows normal slab creation with Planks
+# Script Version: 1.1
+# Purpose: Allows ExtraBiomesXL to use the vanilla crafting recipes for slabs as well as
+#		   adding integration into Natura Crafting Tables
 
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
 print("Initializing 'Extra Biomex XL Changes' Script");
 
-#****************** ExtraBiomexXL Vanilla Style Recipes Added ******************#
+#****************** ExtraBiomexXL Vanilla Style Recipes Added and Mod Compatability ******************#
 
 #================ Variables ================#
+
 #---- Planks ----#
 val RedwoodPlanks = <ExtrabiomesXL:planks>;
 val FirwoodPlanks = <ExtrabiomesXL:planks:1>;
@@ -21,6 +24,18 @@ val RainbowEucalyptusPlanks = <ExtrabiomesXL:planks:5>;
 val AutumnPlanks = <ExtrabiomesXL:planks:6>;
 val BaldCypressPlanks = <ExtrabiomesXL:planks:7>;
 val SakuraPlanks = <ExtrabiomesXL:planks:8>;
+# Natura Planks
+val TigerwoodPlanks = <Natura:planks:9>;
+val WillowPlanks =  <Natura:planks:10>;
+val FusewoodPlanks = <Natura:planks:12>;
+val AmaranthPlanks = <Natura:planks:8>;
+# Vanilla Planks
+val MinecraftPlanks = <minecraft:planks:*>;
+# Extra Utilities Planks
+val ExtraUtilitiesPlanks = <ExtraUtilities:colorWoodPlanks:*>;
+# Engineer's Toolbox Planks
+val EngineersToolboxPlanks = <eng_toolbox:paintedPlanks:*>;
+
 #---- Slabs ----#
 val SakuraSlab = <ExtrabiomesXL:woodslab2>;
 val RedwoodSlab = <ExtrabiomesXL:woodslab>;
@@ -48,7 +63,7 @@ val RedCobblestoneDoubleSlab = <ExtrabiomesXL:double_slabRedRock>;
 val RedRockDoubleSlab = <ExtrabiomesXL:double_slabRedRock:1>;
 val RedBrickDoubleSlab = <ExtrabiomesXL:double_slabRedRock:2>;
 #---- Crafting Tables ----#
-val CraftingTable = <minecraft:workbench>;
+val CraftingTable = <minecraft:crafting_table>;
 val SakuraWoodTable = <Natura:Natura.workbench>;
 val FirWoodTable =  <Natura:Natura.workbench:1>;
 val CypressWoodTable = <Natura:Natura.workbench:2>;
@@ -62,11 +77,6 @@ val TigerwoodTable = <Natura:Natura.workbench:9>;
 val WillowTable = <Natura:Natura.workbench:10>;
 val FusewoodTable = <Natura:Natura.workbench:12>;
 val AmaranthTable = <Natura:Natura.workbench:8>;
-#---- Natura Planks ----#
-val TigerwoodPlanks = <Natura:planks:9>;
-val WillowPlanks =  <Natura:planks:10>;
-val FusewoodPlanks = <Natura:planks:12>;
-val AmaranthPlanks = <Natura:planks:8>;
 
 # Slab Recipes
 recipes.addShaped(SakuraSlab * 6, [
@@ -108,111 +118,101 @@ recipes.addShaped(BaldCypressSlab * 6, [
 
 # Double Slab Recipes
 recipes.addShapedMirrored(SakuraDoubleSlab, [
-[SakuraSlab, null, null],
-[SakuraSlab, null, null]]);
+[SakuraSlab],
+[SakuraSlab]]);
 recipes.addShapedMirrored(RedwoodDoubleSlab, [
-[RedwoodSlab, null, null],
-[RedwoodSlab, null, null]]);
+[RedwoodSlab],
+[RedwoodSlab]]);
 recipes.addShapedMirrored(FirwoodDoubleSlab, [
-[FirwoodPlanks, FirwoodPlanks, null],
-[FirwoodPlanks, FirwoodPlanks, null]]);
+[FirwoodSlab],
+[FirwoodSlab]]);
 recipes.addShapedMirrored(AcaciaDoubleSlab, [
-[AcaciaSlab, null, null],
-[AcaciaSlab, null, null]]);
+[AcaciaSlab],
+[AcaciaSlab]]);
 recipes.addShapedMirrored(CypressDoubleSlab, [
-[CypressSlab, null, null],
-[CypressSlab, null, null]]);
+[CypressSlab],
+[CypressSlab]]);
 recipes.addShapedMirrored(JapaneseMapleDoubleSlab, [
-[JapaneseMapleSlab, null, null],
-[JapaneseMapleSlab, null, null]]);
+[JapaneseMapleSlab],
+[JapaneseMapleSlab]]);
 recipes.addShapedMirrored(RainbowEucalyptusDoubleSlab, [
-[RainbowEucalyptusSlab, null, null],
-[RainbowEucalyptusSlab, null, null]]);
+[RainbowEucalyptusSlab],
+[RainbowEucalyptusSlab]]);
 recipes.addShapedMirrored(AutumnDoubleSlab, [
-[AutumnSlab, null, null],
-[AutumnSlab, null, null]]);
+[AutumnSlab],
+[AutumnSlab]]);
 recipes.addShapedMirrored(BaldCypressSlab, [
-[BaldCypressSlab, null, null],
-[BaldCypressSlab, null, null]]);
+[BaldCypressSlab],
+[BaldCypressSlab]]);
 recipes.addShapedMirrored(RedCobblestoneDoubleSlab, [
-[RedCobblestoneSlab, null, null],
-[RedCobblestoneSlab, null, null]]);
+[RedCobblestoneSlab],
+[RedCobblestoneSlab]]);
 recipes.addShapedMirrored(RedRockDoubleSlab, [
-[RedRockSlab, null, null],
-[RedRockSlab, null, null]]);
+[RedRockSlab],
+[RedRockSlab]]);
 recipes.addShapedMirrored(RedBrickDoubleSlab, [
-[RedBrickSlab, null, null],
-[RedBrickSlab, null, null]]);
+[RedBrickSlab],
+[RedBrickSlab]]);
+
+# Remove Existing ALL Crafting Table Recipes
+recipes.remove(CraftingTable);
+
+# Re-Add Vanilla Crafting Table Recipe(s)
+# Disable the following recipes if you do not use Natura, Extra Utilities, or Engineer's Toolbox
+# bye placing # or // in front of each line or just delete them altogether
+
+// Using Vanilla Planks
+recipes.addShaped(CraftingTable, [
+[MinecraftPlanks, MinecraftPlanks],
+[MinecraftPlanks, MinecraftPlanks]]);
+// Using Engineer's Toolbox Planks
+recipes.addShaped(CraftingTable, [
+[EngineersToolboxPlanks, EngineersToolboxPlanks],
+[EngineersToolboxPlanks, EngineersToolboxPlanks]]);
+// Using Extra Utilities Planks
+recipes.addShaped(CraftingTable, [
+[ExtraUtilitiesPlanks, ExtraUtilitiesPlanks],
+[ExtraUtilitiesPlanks, ExtraUtilitiesPlanks]]);
 
 #======== Natura Recipes made with ExtraBiomexXL Wood ========#
 
-#----- Remove Existing Crafting Table Recipes -----#
-# Comment the following lines out if you do not use Natura by 
-# placing # or // in front of each line or just delete them altogether
-recipes.removeShaped(CraftingTable, [
-[SakuraPlanks, SakuraPlanks, null],
-[SakuraPlanks, SakuraPlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[FirwoodPlanks, FirwoodPlanks, null],
-[FirwoodPlanks, FirwoodPlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[CypressPlanks, CypressPlanks, null],
-[CypressPlanks, CypressPlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[JapaneseMaplePlanks, JapaneseMaplePlanks, null],
-[JapaneseMaplePlanks, JapaneseMaplePlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[AutumnPlanks, AutumnPlanks, null],
-[AutumnPlanks, AutumnPlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[BaldCypressPlanks, BaldCypressPlanks, null],
-[BaldCypressPlanks, BaldCypressPlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[RedwoodPlanks, RedwoodPlanks, null],
-[RedwoodPlanks, RedwoodPlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[AcaciaPlanks, AcaciaPlanks, null],
-[AcaciaPlanks, AcaciaPlanks, null]]);
-recipes.removeShaped(CraftingTable, [
-[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks, null],
-[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks, null]]);
-#---------- Crafting Table Crafting ----------#
-recipes.addShapedMirrored(SakuraWoodTable, [
-[SakuraPlanks, SakuraPlanks, null],
-[SakuraPlanks, SakuraPlanks, null]]);
-recipes.addShapedMirrored(FirWoodTable, [
-[FirwoodPlanks, FirwoodPlanks, null],
-[FirwoodPlanks, FirwoodPlanks, null]]);
-recipes.addShapedMirrored(CypressWoodTable, [
-[CypressPlanks, CypressPlanks, null],
-[CypressPlanks, CypressPlanks, null]]);
-recipes.addShapedMirrored(JapaneseMapleTable, [
-[JapaneseMaplePlanks, JapaneseMaplePlanks, null],
-[JapaneseMaplePlanks, JapaneseMaplePlanks, null]]);
-recipes.addShapedMirrored(AutumnWoodTable, [
-[AutumnPlanks, AutumnPlanks, null],
-[AutumnPlanks, AutumnPlanks, null]]);
-recipes.addShapedMirrored(BaldCypressTable, [
-[BaldCypressPlanks, BaldCypressPlanks, null],
-[BaldCypressPlanks, BaldCypressPlanks, null]]);
-recipes.addShapedMirrored(RedwoodTable, [
-[RedwoodPlanks, RedwoodPlanks, null],
-[RedwoodPlanks, RedwoodPlanks, null]]);
-recipes.addShapedMirrored(AcaciaTable, [
-[AcaciaPlanks, AcaciaPlanks, null],
-[AcaciaPlanks, AcaciaPlanks, null]]);
-recipes.addShapedMirrored(RainbowEucalyptusTable, [
-[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks, null],
-[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks, null]]);
+#---------- Natura Crafting Table Recipes ----------#
+recipes.addShaped(SakuraWoodTable, [
+[SakuraPlanks, SakuraPlanks],
+[SakuraPlanks, SakuraPlanks]]);
+recipes.addShaped(FirWoodTable, [
+[FirwoodPlanks, FirwoodPlanks],
+[FirwoodPlanks, FirwoodPlanks]]);
+recipes.addShaped(CypressWoodTable, [
+[CypressPlanks, CypressPlanks],
+[CypressPlanks, CypressPlanks]]);
+recipes.addShaped(JapaneseMapleTable, [
+[JapaneseMaplePlanks, JapaneseMaplePlanks],
+[JapaneseMaplePlanks, JapaneseMaplePlanks]]);
+recipes.addShaped(AutumnWoodTable, [
+[AutumnPlanks, AutumnPlanks],
+[AutumnPlanks, AutumnPlanks]]);
+recipes.addShaped(BaldCypressTable, [
+[BaldCypressPlanks, BaldCypressPlanks],
+[BaldCypressPlanks, BaldCypressPlanks]]);
+recipes.addShaped(RedwoodTable, [
+[RedwoodPlanks, RedwoodPlanks],
+[RedwoodPlanks, RedwoodPlanks]]);
+recipes.addShaped(AcaciaTable, [
+[AcaciaPlanks, AcaciaPlanks],
+[AcaciaPlanks, AcaciaPlanks]]);
+recipes.addShaped(RainbowEucalyptusTable, [
+[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks],
+[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks]]);
 
 #---- ExtraBiomexXL to Natura Planks Recipes ----#
-recipes.addShapeless(TigerwoodPlanks, [CypressPlanks, <ore:dyeOrange]);
-recipes.addShapeless(TigerwoodPlanks, [AutumnPlanks, <ore:dyeOrange]);
-recipes.addShapeless(WillowPlanks, [CypressPlanks, <ore:dyeCyan>]);
-recipes.addShapeless(WillowPlanks, [AutumnPlanks, <ore:dyeCyan>]);
-recipes.addShapeless(FusewoodPlanks, [CypressPlanks, <ore:dyeGreen>, <ore:dyeBlue>]);
-recipes.addShapeless(FusewoodPlanks, [AutumnPlanks, <ore:dyeGreen>, <ore:dyeBlue>]);
-recipes.addShapeless(AmaranthPlanks, [CypressPlanks, <ore:dyeLime>]);
-recipes.addShapeless(AmaranthPlanks, [AutumnPlanks, <ore:dyeLime>]);
+recipes.addShapeless(TigerwoodPlanks, [CypressPlanks, <minecraft:dye:14>]);
+recipes.addShapeless(TigerwoodPlanks, [AutumnPlanks, <minecraft:dye:14>]);
+recipes.addShapeless(WillowPlanks, [CypressPlanks, <minecraft:dye:6>]);
+recipes.addShapeless(WillowPlanks, [AutumnPlanks, <minecraft:dye:6>]);
+recipes.addShapeless(FusewoodPlanks, [CypressPlanks, <minecraft:dye:2>, <minecraft:dye:4>]);
+recipes.addShapeless(FusewoodPlanks, [AutumnPlanks, <minecraft:dye:2>, <minecraft:dye:4>]);
+recipes.addShapeless(AmaranthPlanks, [CypressPlanks, <minecraft:dye:10>]);
+recipes.addShapeless(AmaranthPlanks, [AutumnPlanks, <minecraft:dye:10>]);
 
 print("Initialized 'Extra Biomex XL Changes' Script");

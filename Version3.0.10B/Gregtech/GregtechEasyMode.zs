@@ -1,5 +1,6 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
+# Script Version: GregtechEasyMode v1.0.0e
 # Author: shoe7ess
 # Script Version: 1.1
 # Purpose: Make IC² and GregTech work as they did in 1.4:

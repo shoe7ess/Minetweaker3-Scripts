@@ -1,6 +1,7 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
 # Author: shoe7ess
+# Script Version: 1.1
 # Purpose: Make IC² and GregTech work as they did in 1.4:
 # i.e. Create IC² T1 Machines > then T2 Machines > and finally Advanced Gregtech Machines is possible again
 

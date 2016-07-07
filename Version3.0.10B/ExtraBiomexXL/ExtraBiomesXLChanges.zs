@@ -1,27 +1,21 @@
 # Name: ExtraBiomesXLChanges
-<<<<<<< HEAD
-# Version Information: ExtraBiomesXLChanges v3.16.4, Minecraft v1.7.10, Extra Utilities
+# Version Information: ExtraBiomesXLChanges v3.16.4, Minecraft v1.7.10
 # Author: shoe7ess
 # Script Version: 1.1
 # Purpose: Allows ExtraBiomesXL to use the vanilla crafting recipes for slabs as well as
 #		   adding integration into Natura Crafting Tables
-=======
-# Version Information: ExtraBiomesXL v3.16.4, Natura v2.2.0.1, Minecraft v1.7.10
-# Script Version: v1.0.0c
-# Author: shoe7ess
-# Purpose: Allows normal slab creation with Planks as well as Natura supprot/integration
->>>>>>> origin/master
 
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
 print("Initializing 'Extra Biomex XL Changes' Script");
 
-#****************** ExtraBiomexXL Vanilla Style Recipes Added and Mod Compatability ******************#
+#*********** ExtraBiomesXL Vanilla Style Recipes Added and Mod Compatability ***********#
 
 #================ Variables ================#
 
-#---- Planks ----#
+#----- Planks -----#
+# ExtrabiomesXL Planks
 val RedwoodPlanks = <ExtrabiomesXL:planks>;
 val FirwoodPlanks = <ExtrabiomesXL:planks:1>;
 val AcaciaPlanks = <ExtrabiomesXL:planks:2>;
@@ -31,19 +25,36 @@ val RainbowEucalyptusPlanks = <ExtrabiomesXL:planks:5>;
 val AutumnPlanks = <ExtrabiomesXL:planks:6>;
 val BaldCypressPlanks = <ExtrabiomesXL:planks:7>;
 val SakuraPlanks = <ExtrabiomesXL:planks:8>;
+val RedRock = <ExtrabiomesXL:terrain_blocks1>;
+val RedCobblestone = <ExtrabiomesXL:terrain_blocks1:1>;
+val RedBrick = <ExtrabiomesXL:terrain_blocks1:2>;
+
 # Natura Planks
-val TigerwoodPlanks = <Natura:planks:9>;
-val WillowPlanks =  <Natura:planks:10>;
-val FusewoodPlanks = <Natura:planks:12>;
+val EucalyptusPlanks = <Natura:planks>;
+val SakuraNaturaPlanks = <Natura:planks:1>;
+val GhostwoodPlanks = <Natura:planks:2>;
+val RedwoodNaturaPlanks = <Natura:planks:3>;
+val BloodwoodPlanks = <Natura:planks:4>;
+val HopseedPlanks = <Natura:planks:5>;
+val MaplePlanks = <Natura:planks:6>;
+val SilverbellPlanks = <Natura:planks:7>;
 val AmaranthPlanks = <Natura:planks:8>;
+val TigerwoodPlanks = <Natura:planks:9>;
+val WillowPlanks = <Natura:planks:10>;
+val DarkwoodPlanks = <Natura:planks:11>;
+val FusewoodPlanks = <Natura:planks:12>;
+
 # Vanilla Planks
 val MinecraftPlanks = <minecraft:planks:*>;
+
 # Extra Utilities Planks
 val ExtraUtilitiesPlanks = <ExtraUtilities:colorWoodPlanks:*>;
+
 # Engineer's Toolbox Planks
 val EngineersToolboxPlanks = <eng_toolbox:paintedPlanks:*>;
 
-#---- Slabs ----#
+#----- Slabs -----#
+# ExtrabiomesXL Slabs
 val SakuraSlab = <ExtrabiomesXL:woodslab2>;
 val RedwoodSlab = <ExtrabiomesXL:woodslab>;
 val FirwoodSlab = <ExtrabiomesXL:woodslab:1>;
@@ -56,7 +67,24 @@ val BaldCypressSlab = <ExtrabiomesXL:woodslab:7>;
 val RedCobblestoneSlab = <ExtrabiomesXL:slabRedRock>;
 val RedRockSlab = <ExtrabiomesXL:slabRedRock:1>;
 val RedBrickSlab = <ExtrabiomesXL:slabRedRock:2>;
-#---- Double Slabs ----#
+
+# Natura Slabs
+val AmaranthSlab = <Natura:plankSlab2>;
+val TigerwoodSlab = <Natura:plankSlab2:1>; 
+val WillowSlab = <Natura:plankSlab2:2>;
+val DarkwoodSlab = <Natura:plankSlab2:3>;
+val FusewoodSlab = <Natura:plankSlab2:4>;
+val EucalyptusSlab = <Natura:plankSlab1>;
+val SakuraNaturaSlab = <Natura:plankSlab1:1>;
+val GhostwoodSlab = <Natura:plankSlab1:2>;
+val RedwoodNaturaSlab = <Natura:plankSlab1:3>;
+val BloodwoodSlab = <Natura:plankSlab1:4>;
+val HopseedSlab = <Natura:plankSlab1:5>;
+val MapleSlab = <Natura:plankSlab1:6>;
+val SilverbellSlab = <Natura:plankSlab1:7>;
+
+#----- Double Slabs -----#
+# ExtrabiomesXL Double Slabs
 val SakuraDoubleSlab =  <ExtrabiomesXL:double_woodslab2>;
 val RedwoodDoubleSlab = <ExtrabiomesXL:double_woodslab>;
 val FirwoodDoubleSlab = <ExtrabiomesXL:double_woodslab:1>;
@@ -69,8 +97,11 @@ val BaldCypressDoubleSlab = <ExtrabiomesXL:double_woodslab:7>;
 val RedCobblestoneDoubleSlab = <ExtrabiomesXL:double_slabRedRock>;
 val RedRockDoubleSlab = <ExtrabiomesXL:double_slabRedRock:1>;
 val RedBrickDoubleSlab = <ExtrabiomesXL:double_slabRedRock:2>;
-#---- Crafting Tables ----#
+
+#----- Crafting Tables -----#
 val CraftingTable = <minecraft:crafting_table>;
+
+# Natura Tables
 val SakuraWoodTable = <Natura:Natura.workbench>;
 val FirWoodTable =  <Natura:Natura.workbench:1>;
 val CypressWoodTable = <Natura:Natura.workbench:2>;
@@ -79,13 +110,14 @@ val AutumnWoodTable = <Natura:Natura.workbench:4>;
 val BaldCypressTable = <Natura:Natura.workbench:5>;
 val RedwoodTable = <Natura:Natura.workbench:6>;
 val AcaciaTable = <Natura:Natura.workbench:7>;
-val RainbowEucalyptusTable = <Natura:Natura.workbench:11>;
+val AmaranthTable = <Natura:Natura.workbench:8>;
 val TigerwoodTable = <Natura:Natura.workbench:9>;
 val WillowTable = <Natura:Natura.workbench:10>;
+val RainbowEucalyptusTable = <Natura:Natura.workbench:11>;
 val FusewoodTable = <Natura:Natura.workbench:12>;
-val AmaranthTable = <Natura:Natura.workbench:8>;
 
-# Slab Recipes
+#----- Slab Recipes -----#
+# ExtrabiomesXL Slabs from Planks/Stone
 recipes.addShaped(SakuraSlab * 6, [
 [null, null, null],
 [null, null, null],
@@ -122,66 +154,135 @@ recipes.addShaped(BaldCypressSlab * 6, [
 [null, null, null],
 [null, null, null],
 [BaldCypressPlanks, BaldCypressPlanks, BaldCypressPlanks]]);
+recipes.addShaped(RedRockSlab * 6, [
+[null, null, null],
+[null, null, null],
+[RedRock, RedRock, RedRock]]);
+recipes.addShaped(RedCobblestoneSlab * 6, [
+[null, null, null],
+[null, null, null],
+[RedCobblestone, RedCobblestone, RedCobblestone]]);
+recipes.addShaped(RedBrickSlab * 6, [
+[null, null, null],
+[null, null, null],
+[RedBrick, RedBrick, RedBrick]]);
 
-# Double Slab Recipes
-recipes.addShapedMirrored(SakuraDoubleSlab, [
+#------ Double Slab Recipes (No Current Use) -----#
+# ExtrabiomesXL Double Slabs
+recipes.addShaped(SakuraDoubleSlab, [
 [SakuraSlab],
 [SakuraSlab]]);
-recipes.addShapedMirrored(RedwoodDoubleSlab, [
+recipes.addShaped(RedwoodDoubleSlab, [
 [RedwoodSlab],
 [RedwoodSlab]]);
-recipes.addShapedMirrored(FirwoodDoubleSlab, [
+recipes.addShaped(FirwoodDoubleSlab, [
 [FirwoodSlab],
 [FirwoodSlab]]);
-recipes.addShapedMirrored(AcaciaDoubleSlab, [
+recipes.addShaped(AcaciaDoubleSlab, [
 [AcaciaSlab],
 [AcaciaSlab]]);
-recipes.addShapedMirrored(CypressDoubleSlab, [
+recipes.addShaped(CypressDoubleSlab, [
 [CypressSlab],
 [CypressSlab]]);
-recipes.addShapedMirrored(JapaneseMapleDoubleSlab, [
+recipes.addShaped(JapaneseMapleDoubleSlab, [
 [JapaneseMapleSlab],
 [JapaneseMapleSlab]]);
-recipes.addShapedMirrored(RainbowEucalyptusDoubleSlab, [
+recipes.addShaped(RainbowEucalyptusDoubleSlab, [
 [RainbowEucalyptusSlab],
 [RainbowEucalyptusSlab]]);
-recipes.addShapedMirrored(AutumnDoubleSlab, [
+recipes.addShaped(AutumnDoubleSlab, [
 [AutumnSlab],
 [AutumnSlab]]);
-recipes.addShapedMirrored(BaldCypressSlab, [
+recipes.addShaped(BaldCypressDoubleSlab, [
 [BaldCypressSlab],
 [BaldCypressSlab]]);
-recipes.addShapedMirrored(RedCobblestoneDoubleSlab, [
+recipes.addShaped(RedCobblestoneDoubleSlab, [
 [RedCobblestoneSlab],
 [RedCobblestoneSlab]]);
-recipes.addShapedMirrored(RedRockDoubleSlab, [
+recipes.addShaped(RedRockDoubleSlab, [
 [RedRockSlab],
 [RedRockSlab]]);
-recipes.addShapedMirrored(RedBrickDoubleSlab, [
+recipes.addShaped(RedBrickDoubleSlab, [
 [RedBrickSlab],
 [RedBrickSlab]]);
 
+#----- Double Slabs to Planks -----#
+# Natura Planks from Slabs
+recipes.addShaped(EucalyptusPlanks, [
+[EucalyptusSlab],
+[EucalyptusSlab]]);
+recipes.addShaped(SakuraNaturaPlanks, [
+[SakuraNaturaSlab],
+[SakuraNaturaSlab]]);
+recipes.addShaped(GhostwoodPlanks, [
+[GhostwoodSlab],
+[GhostwoodSlab]]);
+recipes.addShaped(RedwoodNaturaPlanks, [
+[RedwoodNaturaSlab],
+[RedwoodNaturaSlab]]);
+recipes.addShaped(BloodwoodPlanks, [
+[BloodwoodSlab],
+[BloodwoodSlab]]);
+recipes.addShaped(HopseedPlanks, [
+[HopseedSlab],
+[HopseedSlab]]);
+recipes.addShaped(MaplePlanks, [
+[MapleSlab],
+[MapleSlab]]);
+recipes.addShaped(SilverbellPlanks, [
+[SilverbellSlab],
+[SilverbellSlab]]);
+recipes.addShaped(AmaranthPlanks, [
+[AmaranthSlab],
+[AmaranthSlab]]);
+recipes.addShaped(TigerwoodPlanks, [
+[TigerwoodSlab],
+[TigerwoodSlab]]);
+recipes.addShaped(WillowPlanks, [
+[WillowSlab],
+[WillowSlab]]);
+recipes.addShaped(DarkwoodPlanks, [
+[DarkwoodSlab],
+[DarkwoodSlab]]);
+recipes.addShaped(FusewoodPlanks, [
+[FusewoodSlab],
+[FusewoodSlab]]);
+
+# ExtrabiomesXL Planks/Stones from Double Slab
+recipes.addShapeless(CypressPlanks, [CypressDoubleSlab]);
+recipes.addShapeless(RedwoodPlanks, [RedwoodDoubleSlab]);
+recipes.addShapeless(FirwoodPlanks, [FirwoodDoubleSlab]);
+recipes.addShapeless(AcaciaPlanks, [AcaciaDoubleSlab]);
+recipes.addShapeless(JapaneseMaplePlanks, [JapaneseMapleDoubleSlab]);
+recipes.addShapeless(RainbowEucalyptusPlanks, [RainbowEucalyptusDoubleSlab]);
+recipes.addShapeless(AutumnPlanks, [AutumnDoubleSlab]);
+recipes.addShapeless(BaldCypressPlanks, [BaldCypressDoubleSlab]);
+recipes.addShapeless(SakuraPlanks, [SakuraDoubleSlab]);
+recipes.addShapeless(RedRock, [RedRockDoubleSlab]);
+recipes.addShapeless(RedCobblestone, [RedCobblestoneDoubleSlab]);
+recipes.addShapeless(RedBrick, [RedBrickDoubleSlab]);
+
+#===== Remove then Re-Add Vanilla Crafting Table Recipe(s) =====#
 # Remove Existing ALL Crafting Table Recipes
 recipes.remove(CraftingTable);
-
-# Re-Add Vanilla Crafting Table Recipe(s)
-# Disable the following recipes if you do not use Natura, Extra Utilities, or Engineer's Toolbox
-# bye placing # or // in front of each line or just delete them altogether
-
-// Using Vanilla Planks
+# Vanilla Planks Crafting Table
 recipes.addShaped(CraftingTable, [
 [MinecraftPlanks, MinecraftPlanks],
 [MinecraftPlanks, MinecraftPlanks]]);
-// Using Engineer's Toolbox Planks
+# Engineer's Toolbox Planks Crafting Table
 recipes.addShaped(CraftingTable, [
 [EngineersToolboxPlanks, EngineersToolboxPlanks],
 [EngineersToolboxPlanks, EngineersToolboxPlanks]]);
-// Using Extra Utilities Planks
+# Extra Utilities Planks Crafting Table
 recipes.addShaped(CraftingTable, [
 [ExtraUtilitiesPlanks, ExtraUtilitiesPlanks],
 [ExtraUtilitiesPlanks, ExtraUtilitiesPlanks]]);
 
-#======== Natura Recipes made with ExtraBiomexXL Wood ========#
+#=========== Natura Recipes made with ExtraBiomexXL Wood ===========#
+# Disable the following recipes if you do not use:                  #
+# Natura, Extra Utilities, or Engineer's Toolbox                    #
+# Disable by placing # or // in front of each line or delete recipe #
+#===================================================================#
 
 #---------- Natura Crafting Table Recipes ----------#
 recipes.addShaped(SakuraWoodTable, [
@@ -212,14 +313,14 @@ recipes.addShaped(RainbowEucalyptusTable, [
 [RainbowEucalyptusPlanks, RainbowEucalyptusPlanks],
 [RainbowEucalyptusPlanks, RainbowEucalyptusPlanks]]);
 
-#---- ExtraBiomexXL to Natura Planks Recipes ----#
-recipes.addShapeless(TigerwoodPlanks, [CypressPlanks, <minecraft:dye:14>]);
-recipes.addShapeless(TigerwoodPlanks, [AutumnPlanks, <minecraft:dye:14>]);
-recipes.addShapeless(WillowPlanks, [CypressPlanks, <minecraft:dye:6>]);
-recipes.addShapeless(WillowPlanks, [AutumnPlanks, <minecraft:dye:6>]);
-recipes.addShapeless(FusewoodPlanks, [CypressPlanks, <minecraft:dye:2>, <minecraft:dye:4>]);
-recipes.addShapeless(FusewoodPlanks, [AutumnPlanks, <minecraft:dye:2>, <minecraft:dye:4>]);
-recipes.addShapeless(AmaranthPlanks, [CypressPlanks, <minecraft:dye:10>]);
-recipes.addShapeless(AmaranthPlanks, [AutumnPlanks, <minecraft:dye:10>]);
+#---------- ExtraBiomexXL to Natura Planks Recipes ----------#
+recipes.addShapeless(TigerwoodPlanks, [CypressPlanks, <minecraft:dye:11>]); #Mix with Yellow Dye
+recipes.addShapeless(TigerwoodPlanks, [AutumnPlanks, <minecraft:dye:11>]);
+recipes.addShapeless(WillowPlanks, [CypressPlanks, <minecraft:dye:2>]); # Mix with Green Dye
+recipes.addShapeless(WillowPlanks, [AutumnPlanks, <minecraft:dye:2>]);
+recipes.addShapeless(FusewoodPlanks, [CypressPlanks, <minecraft:dye:6>]); # Mix with Cyan Dye
+recipes.addShapeless(FusewoodPlanks, [AutumnPlanks, <minecraft:dye:6>]);
+recipes.addShapeless(AmaranthPlanks, [CypressPlanks, <minecraft:dye:5>]); # Mix with Purple Dye
+recipes.addShapeless(AmaranthPlanks, [AutumnPlanks, <minecraft:dye:5>]);
 
 print("Initialized 'Extra Biomex XL Changes' Script");

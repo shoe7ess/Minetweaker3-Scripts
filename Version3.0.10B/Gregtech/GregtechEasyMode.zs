@@ -44,6 +44,8 @@ val LeadCasing = <IC2:itemCasing:6>;
 val SteelDust = <gregtech:gt.metaitem.01:2305>;
 val SteelIngot = <ore:ingotSteel>;
 val NANDChip = <gregtech:gt.metaitem.01:32700>;
+val ObsidianStone = <minecraft:obsidian>;
+val ObsidianDust = <IC2:itemDust:11>;
 
 #*************** IC² Recipe Additions/Changes ***************#
 
@@ -159,6 +161,7 @@ Macerator.addRecipe(<IC2:itemDust:5> * 2, <ore:oreIron>);
 Macerator.addRecipe(<IC2:itemDust:10> * 2, <ore:oreLead>);
 Macerator.addRecipe(<IC2:itemDust:6> * 2, <ore:oreSilver>);
 Macerator.addRecipe(<IC2:itemDust:7> * 2, <ore:oreTin>);
+Macerator.addRecipe(ObsidianDust * 2, ObsidianStone);
 Macerator.addRecipe(SteelDust * 2, <ore:oreSteel>);
 
 #----- Gregtech Recipe Changes/Additions -----#

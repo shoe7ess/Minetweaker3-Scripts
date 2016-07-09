@@ -5,7 +5,37 @@
 # Purpose: Make IC² and GregTech work as they did in 1.4:
 # i.e. Create IC² T1 Machines > then T2 Machines > and finally Advanced Gregtech Machines is possible again
 
+
+# May need to import ALL IC² machines
+import mods.ic2.Canner;
+import mods.ic2.Compressor;
+import mods.ic2.Extractor;
 import mods.ic2.Macerator;
+import mods.ic2.MetalFormer;
+import mods.ic2.OreWasher;
+import mods.ic2.ThermalCentrifuge;
+import mods.gregtech.AlloySmelter;
+import mods.gregtech.ArcFurnace;
+import mods.gregtech.Assembler;
+import mods.gregtech.Autoclave;
+import mods.gregtech.BlastFurnace;
+import mods.gregtech.Centrifuge;
+import mods.gregtech.ChemicalReactor;
+import mods.gregtech.ChemicalBath;
+import mods.gregtech.Distillery;
+import mods.gregtech.Extruder;
+import mods.gregtech.Fermenter;
+import mods.gregtech.FluidExtractor;
+import mods.gregtech.FluidCanner;
+import mods.gregtech.ForgeHammer;
+import mods.gregtech.FormingPress;
+import mods.gregtech.PlasmaArcFurnace;
+import mods.gregtech.PlateBender;
+import mods.gregtech.PrecisionLaser;
+import mods.gregtech.Pulverizer;
+import mods.gregtech.Wiremill;
+import mods.gregtech.Polarizer;
+import mods.gregtech.VacuumFreezer;
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
@@ -46,6 +76,13 @@ val SteelIngot = <ore:ingotSteel>;
 val NANDChip = <gregtech:gt.metaitem.01:32700>;
 val ObsidianStone = <minecraft:obsidian>;
 val ObsidianDust = <IC2:itemDust:11>;
+val CrushedIron = (<IC2:itemCrushedOre>);
+val CrushedCopper = (<IC2:itemCrushedOre:1>);
+val CrushedGold = (<IC2:itemCrushedOre:2>);
+val CrushedTin = (<IC2:itemCrushedOre:3>);
+val CrushedUranium = (<IC2:itemCrushedOre:4>);
+val CrushedSilver = (<IC2:itemCrushedOre:5>);
+val CrushedLead = (<IC2:itemCrushedOre:6>);
 
 #*************** IC² Recipe Additions/Changes ***************#
 
@@ -147,12 +184,13 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 #======= IC² Macerator Conversions =======#
 
 # Removes Crushed Ore Recipes
-recipes.remove(<ore:crushedCopper>);
-recipes.remove(<ore:crushedGold>);
-recipes.remove(<ore:crushedIron>);
-recipes.remove(<ore:crushedLead>);
-recipes.remove(<ore:crushedSilver>);
-recipes.remove(<ore:crushedTin>);
+recipes.remove(CrushedCopper);
+recipes.remove(CrushedGold);
+recipes.remove(CrushedIron);
+recipes.remove(CrushedLead);
+recipes.remove(CrushedSilver);
+recipes.remove(CrushedTin);
+recipes.remove(CrushedUranium);
 
 # Macerates Ores Straight to Dusts
 Macerator.addRecipe(<IC2:itemDust:3> * 2, <ore:oreCopper>);
@@ -161,16 +199,69 @@ Macerator.addRecipe(<IC2:itemDust:5> * 2, <ore:oreIron>);
 Macerator.addRecipe(<IC2:itemDust:10> * 2, <ore:oreLead>);
 Macerator.addRecipe(<IC2:itemDust:6> * 2, <ore:oreSilver>);
 Macerator.addRecipe(<IC2:itemDust:7> * 2, <ore:oreTin>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 2, <IC2:blockOreUran>);
 Macerator.addRecipe(ObsidianDust * 2, ObsidianStone);
 Macerator.addRecipe(SteelDust * 2, <ore:oreSteel>);
 
-#----- Gregtech Recipe Changes/Additions -----#
+#======= Gregtech Recipe Changes/Additions =======#
 
 # Steel Dust Crafting and Processing
 recipes.addShapeless(SteelDust, [<ore:dustIron>, <ore:dustCoal> * 2]);
 
-# NAND Chip from 2xRedstone
+# NAND Chip from 2x Redstone
 recipes.addShapeless(NANDChip, [Redstone, Redstone]);
+
+#----- IC² Machines to Gregtech Counterpart Machine Conversions -----#
+
+# Basic Macerator
+recipes.addShapeless(<gregtech:gt.blockmachines:301>, [<IC2:blockMachine:3>]);
+# Rotary Macerator
+recipes.addShapeless(<gregtech:gt.blockmachines:302>, [<AdvancedMachines:advancedmachines.block>]);
+
+# Electric Furnace
+recipes.addShapeless(<gregtech:gt.blockmachines:261>, [<IC2:blockMachine:2>]);
+# Induction Furnace
+recipes.addShapeless(<gregtech:gt.blockmachines:262>, [<IC2:blockMachine:13>]);
+
+# Extractor
+recipes.addShapeless(<gregtech:gt.blockmachines:271>, [<IC2:blockMachine:4>]);
+# Centrifuge Extractor
+recipes.addShapeless(<gregtech:gt.blockmachines:272>, [<AdvancedMachines:advancedmachines.block:2>]);
+
+# Compressor
+recipes.addShapeless(<gregtech:gt.blockmachines:241>, [<IC2:blockMachine:5>]);
+# Singularity Compressor
+recipes.addShapeless(<gregtech:gt.blockmachines:242>, [<AdvancedMachines:advancedmachines.block:1>]);
+
+# Recycler
+recipes.addShapeless(<gregtech:gt.blockmachines:331>, [<IC2:blockMachine:11>]);
+# Compacting Recycler
+recipes.addShapeless(<gregtech:gt.blockmachines:332>, [<AdvancedMachines:advancedmachines.block:5>]);
+
+# Solid Canning Machine
+recipes.addShapeless(<gregtech:gt.blockmachines:231>, [<IC2:blockMachine:9>]);
+# Vacuum Canner
+recipes.addShapeless(<gregtech:gt.blockmachines:232>, [<AdvancedMachines:advancedmachines.block:3>]);
+
+# Pump
+recipes.addShapeless(<gregtech:gt.blockmachines:1140>, [<IC2:blockMachine:8>]);
+
+# Electrolyzer
+recipes.addShapeless(<gregtech:gt.blockmachines:371>, [<IC2:blockMachine:10>]);
+# Industrial Electrolyzer
+recipes.addShapeless(<gregtech:gt.blockmachines:372>, [<techreborn:industrialelectrolyzer>]);
+
+# Metal Former
+recipes.addShapeless(<gregtech:gt.blockmachines:281>, [<IC2:blockMachine:4>]);
+# Liquescent Extruder
+recipes.addShapeless(<gregtech:gt.blockmachines:282>, [<AdvancedMachines:advancedmachines.block:6>]);
+# Adv Canning Machine
+recipes.addShapeless(<gregtech:gt.blockmachines:282>, [<AdvancedMachines:advancedmachines.block:7>]);
+
+# Ore Washing Plant
+recipes.addShapeless(<gregtech:gt.blockmachines:391>, [<IC2:blockMachine:5>]);
+# Thermal Washer
+recipes.addShapeless(<gregtech:gt.blockmachines:392>, [<AdvancedMachines:advancedmachines.block:4>]);
 
 
 print("Initialized 'GregtechEasyMode.zs' with IC2 Recipe Changes");

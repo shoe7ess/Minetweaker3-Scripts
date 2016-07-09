@@ -181,6 +181,9 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 [<ore:dustCoal>, <ore:dustCoal>],
 [<ore:dustCoal>, <ore:dustCoal>]]);
 
+# MFR Raw Rubber = Rubber
+Furnace.addrecipe(<IC2:itemRubber>, <MineFactoryReloaded:rubber.raw>);
+
 #======= IC² Macerator Conversions =======#
 
 # Removes Crushed Ore Recipes

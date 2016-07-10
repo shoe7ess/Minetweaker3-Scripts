@@ -83,6 +83,7 @@ val CrushedTin = (<IC2:itemCrushedOre:3>);
 val CrushedUranium = (<IC2:itemCrushedOre:4>);
 val CrushedSilver = (<IC2:itemCrushedOre:5>);
 val CrushedLead = (<IC2:itemCrushedOre:6>);
+val Rubber = (<IC2:itemRubber>);
 
 #*************** IC² Recipe Additions/Changes ***************#
 
@@ -182,7 +183,9 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 [<ore:dustCoal>, <ore:dustCoal>]]);
 
 # MFR Raw Rubber = Rubber
-Furnace.addrecipe(<IC2:itemRubber>, <MineFactoryReloaded:rubber.raw>);
+furnace.remove(<gregtech:gt.metaitem.01:11880>);
+furnace.addRecipe(Rubber, <MineFactoryReloaded:rubber.raw>);
+furnace.addRecipe(<gregtech:gt.metaitem.01:11880>, Rubber);
 
 #======= IC² Macerator Conversions =======#
 

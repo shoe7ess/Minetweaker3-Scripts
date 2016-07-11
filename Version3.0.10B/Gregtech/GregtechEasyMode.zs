@@ -276,6 +276,8 @@ Macerator.addRecipe(<MineFactoryReloaded:plastic.raw>, <gregtech:gt.metaitem.01:
 Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2802> * 8],  null, <minecraft:gravel> * 16, null, null, [10000], 50, 1920);
 #Centrifuge
 #OutputArray, InputFluid, InputStack, InputCell, OutputFluid, OutputArrayChances, Time in Ticks, EnergyUsage
+# The following recipe requires user to edit Recipes.cfg in Gregtech Config and under the centrifuge section, change "IC2:itemHarz:#"
+# to "IC2:itemHarz:0"
 Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <TConstruct:buckets:25>, <IC2:itemFuelPlantBall>,], null, <IC2:itemHarz> * 2, null, null, [10000, 10000, 5000], 300, 5);
 
 #********** Gregtech Recipe Changes/Additions **********#

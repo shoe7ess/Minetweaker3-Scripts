@@ -2,8 +2,11 @@
 # Version Information: ExtraBiomesXLChanges v3.16.4, Minecraft v1.7.10
 # Author: shoe7ess
 # Script Version: 1.1
-# Purpose: Allows ExtraBiomesXL to use the vanilla crafting recipes for slabs as well as
+
+#========================================================================================#
+# Purpose: Allows ExtraBiomesXL to use the vanilla crafting recipes for slabs as well as #
 #		   adding integration into Natura Crafting Tables
+#========================================================================================#
 
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;

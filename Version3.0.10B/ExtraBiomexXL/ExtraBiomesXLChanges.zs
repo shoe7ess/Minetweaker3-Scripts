@@ -44,14 +44,37 @@ val WillowPlanks = <Natura:planks:10>;
 val DarkwoodPlanks = <Natura:planks:11>;
 val FusewoodPlanks = <Natura:planks:12>;
 
+# Natura Pressure Plates
+val EucalyptusPressure = <Natura:pressureplate.eucalyptus>;
+val SakuraNaturaPressure = <Natura:pressureplate.sakura>;
+val GhostwoodPressure = <Natura:pressureplate.ghostwood>;
+val RedwoodNaturaPressure = <Natura:pressureplate.redwood>;
+val BloodwoodPressure = <Natura:pressureplate.bloodwood>;
+val HopseedPressure = <Natura:pressureplate.hopseed>;
+val MaplePressure = <Natura:pressureplate.maple>;
+val SilverbellPressure = <Natura:pressureplate.silverbell>;
+val AmaranthPressure = <Natura:pressureplate.amaranth>;
+val TigerwoodPressure = <Natura:pressureplate.tiger>;
+val WillowPressure = <Natura:pressureplate.willow>;
+val DarkwoodPressure = <Natura:pressureplate.darkwood>;
+val FusewoodPressure = <Natura:pressureplate.fusewood>;
+
 # Vanilla Planks
 val MinecraftPlanks = <minecraft:planks:*>;
+
+# Vanilla Pressure Plates
+val PressurePlate = <minecraft:wooden_pressure_plate>;
 
 # Extra Utilities Planks
 val ExtraUtilitiesPlanks = <ExtraUtilities:colorWoodPlanks:*>;
 
 # Engineer's Toolbox Planks
 val EngineersToolboxPlanks = <eng_toolbox:paintedPlanks:*>;
+
+# Forestry Planks
+val ForestryPlanks = <Forestry:planks:*>;
+val ForestryPlanksFire = <Forestry:planksFireproof:*>;
+
 
 #----- Slabs -----#
 # ExtrabiomesXL Slabs
@@ -262,8 +285,8 @@ recipes.addShapeless(RedRock, [RedRockDoubleSlab]);
 recipes.addShapeless(RedCobblestone, [RedCobblestoneDoubleSlab]);
 recipes.addShapeless(RedBrick, [RedBrickDoubleSlab]);
 
-#===== Remove then Re-Add Vanilla Crafting Table Recipe(s) =====#
-# Remove Existing ALL Crafting Table Recipes
+#===== Remove then Re-Add Vanilla Crafting Table and Pressure Plate Recipe(s) =====#
+# Remove ALL Existing Crafting Table Recipes
 recipes.remove(CraftingTable);
 # Vanilla Planks Crafting Table
 recipes.addShaped(CraftingTable, [
@@ -277,12 +300,57 @@ recipes.addShaped(CraftingTable, [
 recipes.addShaped(CraftingTable, [
 [ExtraUtilitiesPlanks, ExtraUtilitiesPlanks],
 [ExtraUtilitiesPlanks, ExtraUtilitiesPlanks]]);
+# Forestry Crafting Table
+recipes.addShaped(CraftingTable, [
+[ForestryPlanks, ForestryPlanks],
+[ForestryPlanks, ForestryPlanks]]);
+recipes.addShaped(CraftingTable, [
+[ForestryPlanksFire, ForestryPlanksFire],
+[ForestryPlanksFire, ForestryPlanksFire]]);
+
+# Remove ALL Existing Pressure Plate Recipes
+recipes.remove(PressurePlate);
+# Vanilla Planks Pressure Plate
+recipes.addShaped(PressurePlate, [
+[MinecraftPlanks, MinecraftPlanks]]);
+# Engineer's Toolbox Planks Pressure Plate
+recipes.addShaped(PressurePlate, [
+[EngineersToolboxPlanks, EngineersToolboxPlanks]]);
+# Extra Utilities Planks Pressure Plate
+recipes.addShaped(PressurePlate, [
+[ExtraUtilitiesPlanks, ExtraUtilitiesPlanks]]);
+# Forestry Pressure Plate
+recipes.addShaped(PressurePlate, [
+[ForestryPlanks, ForestryPlanks]]);
+recipes.addShaped(PressurePlate, [
+[ForestryPlanksFire, ForestryPlanksFire]]);
 
 #=========== Natura Recipes made with ExtraBiomexXL Wood ===========#
 # Disable the following recipes if you do not use:                  #
 # Natura, Extra Utilities, or Engineer's Toolbox                    #
 # Disable by placing # or // in front of each line or delete recipe #
 #===================================================================#
+
+#---------- Natura Pressure Plates from ExtrabiomesXL ----------#
+
+recipes.addShaped(RedwoodNaturaPressure, [
+[RedwoodPlanks, RedwoodPlanks]]);
+recipes.addShaped(SilverbellPressure, [
+[FirwoodPlanks, FirwoodPlanks]]);
+recipes.addShaped(WillowPressure, [
+[AcaciaPlanks, AcaciaPlanks]]);
+recipes.addShaped(GhostwoodPressure, [
+[CypressPlanks, CypressPlanks]]);
+recipes.addShaped(AmaranthPressure, [
+[JapaneseMaplePlanks, JapaneseMaplePlanks]]);
+recipes.addShaped(DarkwoodPressure, [
+[RainbowEucalyptusPlanks, RainbowEucalyptusPlanks]]);
+recipes.addShaped(BloodwoodPressure, [
+[AutumnPlanks, AutumnPlanks]]);
+recipes.addShaped(SakuraNaturaPressure, [
+[BaldCypressPlanks, BaldCypressPlanks]]);
+recipes.addShaped(EucalyptusPressure, [
+[SakuraPlanks, SakuraPlanks]]);
 
 #---------- Natura Crafting Table Recipes ----------#
 recipes.addShaped(SakuraWoodTable, [
@@ -312,6 +380,21 @@ recipes.addShaped(AcaciaTable, [
 recipes.addShaped(RainbowEucalyptusTable, [
 [RainbowEucalyptusPlanks, RainbowEucalyptusPlanks],
 [RainbowEucalyptusPlanks, RainbowEucalyptusPlanks]]);
+
+# Natura Pressure Plates to Normal Pressure Plates Shapeless
+recipes.addShapeless(PressurePlate, [EucalyptusPressure]);
+recipes.addShapeless(PressurePlate, [SakuraNaturaPressure]);
+recipes.addShapeless(PressurePlate, [GhostwoodPressure]);
+recipes.addShapeless(PressurePlate, [RedwoodNaturaPressure]);
+recipes.addShapeless(PressurePlate, [BloodwoodPressure]);
+recipes.addShapeless(PressurePlate, [HopseedPressure]);
+recipes.addShapeless(PressurePlate, [MaplePressure]);
+recipes.addShapeless(PressurePlate, [SilverbellPressure]);
+recipes.addShapeless(PressurePlate, [AmaranthPressure]);
+recipes.addShapeless(PressurePlate, [TigerwoodPressure]);
+recipes.addShapeless(PressurePlate, [WillowPressure]);
+recipes.addShapeless(PressurePlate, [DarkwoodPressure]);
+recipes.addShapeless(PressurePlate, [FusewoodPressure]);
 
 #---------- ExtraBiomexXL to Natura Planks Recipes ----------#
 recipes.addShapeless(TigerwoodPlanks, [CypressPlanks, <minecraft:dye:11>]); #Mix with Yellow Dye

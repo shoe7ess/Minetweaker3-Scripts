@@ -271,26 +271,35 @@ Macerator.addRecipe(<gregtech:gt.metaitem.01:2874>, <IC2:itemRubber>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2880>, <gregtech:gt.metaitem.01:11880>);
 Macerator.addRecipe(<MineFactoryReloaded:plastic.raw>, <gregtech:gt.metaitem.01:11874>);
 
-# Re-add Raw Rubber Dust Centrifuge Recipe
 
+
+#*********************** Gregtech Recipe Changes/Additions *****************************#
+# Note: For all Gregtech machine recipes, all recipes marked with '//EDITCONFIG' MUST   #
+# have fields changed/removed from Gregtechs Recipes.cfg under their respective section #
+#***************************************************************************************#
+
+#===== Gregtech Centrifuge Recipes =====#
+// Rules: OutputArray, InputFluid, InputStack, InputCell, OutputFluid, OutputArrayChances, Time in Ticks, EnergyUsage
+
+# Gravel to Flint Dust (Taken from one of Dreammaster's configs)
 Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2802> * 8],  null, <minecraft:gravel> * 16, null, null, [10000], 50, 1920);
-#Centrifuge
-#OutputArray, InputFluid, InputStack, InputCell, OutputFluid, OutputArrayChances, Time in Ticks, EnergyUsage
-# The following recipe requires user to edit Recipes.cfg in Gregtech Config and under the centrifuge section, change "IC2:itemHarz:#"
-# to "IC2:itemHarz:0"
-Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <TConstruct:buckets:25>, <IC2:itemFuelPlantBall>,], null, <IC2:itemHarz> * 2, null, null, [10000, 10000, 5000], 300, 5);
 
-#********** Gregtech Recipe Changes/Additions **********#
+# Rubber to Raw Rubber Dust, Glue Cell [Unable to output liquid glue in array], and 50% chance of plantball
+//EDITCONFIG 'Gregtech/Recipes.cfg: centrifuge {' section (default line: 14261) add below "I:ic2.itemHarz_300=300" the line "I:ic2.itemRubber_300=300" in the "ic2.*item* lines
+Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <gregtech:gt.metaitem.01:30726>, <IC2:itemFuelPlantBall>,], null, <IC2:itemRubber>, null, null, [10000, 10000, 5000], 300, 5);
 
-# Alloys Smelter Recipes
-AlloySmelter.addRecipe(<gregtech:gt.metaitem.01:11880>, <IC2:itemRubber>, null, 130, 3);
-# OutputStack, InputStack1, InputStack2, Time in Ticks, EnergyUsage
+#===== Alloys Smelter Recipes =====#
+// Rules: OutputStack, InputStack1, InputStack2, Time in Ticks, EnergyUsage
+# Additional Bronze Ingot Recipe (Taken from one of Dreammaster's configs)
 AlloySmelter.addRecipe(<gregtech:gt.metaitem.01:11300>, <gregtech:gt.metaitem.01:9057> * 9, <gregtech:gt.metaitem.01:11035>, 200, 16);
-# GT Centrifuge Recipes
-Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2802> * 8],  null, <minecraft:gravel> * 16, null, null, [10000], 50, 1920);
 
-Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <TConstruct:buckets:25>, <IC2:itemFuelPlantBall>,], null, <IC2:itemHarz> * 2, null, null, [10000, 10000, 5000], 300, 5);
+//EDITCONFIG 'Gregtech/Recipes.cfg: alloysmelting {' section (default line: 3) add in"I:ic2.itemRubber_130=130" in the "ic2.*item* lines
+# Rubber to Rubber Bar
+AlloySmelter.addRecipe(<gregtech:gt.metaitem.01:11880>, <IC2:itemRubber>, null, 130, 3);
 
+
+
+#----- Miscellaneous Easier Recipes -----#
 # Steel Dust Crafting and Processing
 recipes.addShapeless(SteelDust, [<ore:dustIron>, <ore:dustCoal> * 2]);
 
@@ -350,4 +359,4 @@ recipes.addShapeless(<gregtech:gt.blockmachines:391>, [<IC2:blockMachine:5>]);
 recipes.addShapeless(<gregtech:gt.blockmachines:392>, [<AdvancedMachines:advancedmachines.block:4>]);
 
 
-print("Initialized 'GregtechEasyMode.zs' with IC2 Recipe Changes");
+print("Initialized 'GregtechEasyMode.zs' Script");

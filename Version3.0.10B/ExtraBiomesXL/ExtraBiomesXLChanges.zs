@@ -5,7 +5,7 @@
 
 #========================================================================================#
 # Purpose: Allows ExtraBiomesXL to use the vanilla crafting recipes for slabs as well as #
-#		   adding integration into Natura Crafting Tables
+#		   adding integration into Natura Crafting Tables                                #
 #========================================================================================#
 
 import minetweaker.item.IIngredient;

@@ -194,6 +194,7 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 #======= IC²/MFR Furnace Conversions =====#
 
 # MFR Raw Rubber = Rubber
+recipes.remove(<gregtech:gt.metaitem.01:11880>);
 furnace.remove(<gregtech:gt.metaitem.01:11880>);
 furnace.remove(<gregtech:gt.metaitem.01:2874>); #Polyethylene pulp
 furnace.addRecipe(Rubber, <MineFactoryReloaded:rubber.raw>);
@@ -210,6 +211,10 @@ Extractor.addRecipe(<IC2:itemRubber> * 2, <IC2:blockRubWood>);
 Extractor.addRecipe(<IC2:itemRubber> * 2, <MineFactoryReloaded:rubberwood.log>);
 Extractor.addRecipe(<IC2:itemRubber> * 3, <IC2:itemHarz>);
 Extractor.addRecipe(<IC2:itemRubber> * 3, <MineFactoryReloaded:rubber.raw>);
+#======= Thermal Centrifuge ======#
+
+ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <gregtech:gt.metaitem.01:2830>, 320);
+ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <techreborn:dust:32>, 320);
 
 #======= IC² Macerator Conversions =======#
 
@@ -269,8 +274,10 @@ Macerator.addRecipe(ObsidianDust * 2, ObsidianStone);
 Macerator.addRecipe(SteelDust * 2, <ore:oreSteel>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2874>, <IC2:itemRubber>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2880>, <gregtech:gt.metaitem.01:11880>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2830> * 2, <gregtech:gt.blockores:830>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2830> * 2, <techreborn:techreborn.ore:0>);
 Macerator.addRecipe(<MineFactoryReloaded:plastic.raw>, <gregtech:gt.metaitem.01:11874>);
-
+Macerator.addRecipe(<BigReactors:BRIngot:4> * 2, <BigReactors:YelloriteOre>);
 
 
 #*********************** Gregtech Recipe Changes/Additions *****************************#
@@ -317,6 +324,7 @@ recipes.addShapeless(<gregtech:gt.blockmachines:302>, [<AdvancedMachines:advance
 recipes.addShapeless(<gregtech:gt.blockmachines:261>, [<IC2:blockMachine:2>]);
 # Induction Furnace
 recipes.addShapeless(<gregtech:gt.blockmachines:262>, [<IC2:blockMachine:13>]);
+recipes.addShapeless(<IC2:blockMachine:13>, [<gregtech:gt.blockmachines:262>]);
 
 # Extractor
 recipes.addShapeless(<gregtech:gt.blockmachines:271>, [<IC2:blockMachine:4>]);

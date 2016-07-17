@@ -8,7 +8,11 @@
 # i.e. Create IC² T1 Machines > then T2 Machines > and finally Advanced # 
 #      Gregtech Machines is possible again                              #
 # Also: Adds easier integration between Tech Reborn, MFR, etc, with IC2 #
-#       crafting and machine recipes                                    #
+#       crafting and machine recipes									#
+# Next: In order for the rubber recipe changes to work, you may have to #
+#		type /mt reload													#
+# Finally: There are instructions for getting the GT machine recipes to #
+#       work (involving changing Gregtech's Recipe.cfg file             #
 #=======================================================================#
 
 
@@ -91,18 +95,23 @@ val CrushedSilver = (<IC2:itemCrushedOre:5>);
 val CrushedLead = (<IC2:itemCrushedOre:6>);
 val Rubber = (<IC2:itemRubber>);
 
-#*************** IC² Recipe Additions/Changes ***************#
+# Necessary Recipe Removal:
+recipes.remove(<gregtech:gt.metaitem.01:2896>); # Raw Rubber Dust
+recipes.remove(<gregtech:gt.metaitem.01:11880>); # GT Rubber Bar
+recipes.remove(<gregtech:gt.metaitem.01:5822>); # Crushed Bauxite
+recipes.remove(<gregtech:gt.metaitem.01:5526>); # Crushed Lapis
+recipes.remove(CrushedCopper); # Next Few are Self Explanatory
+recipes.remove(CrushedGold);
+recipes.remove(CrushedIron);
+recipes.remove(CrushedLead);
+recipes.remove(CrushedSilver);
+recipes.remove(CrushedTin);
+recipes.remove(CrushedUranium);
 
-# Non-Working removal recipe for Raw Rubber Dust
-recipes.remove(<gregtech:gt.metaitem.01:2896>);
-# Empty Cell
+#******************* IC² Recipe Additions/Changes *******************#
+
+# Empty Cell Recipe
 recipes.addShapeless(<IC2:itemCellEmpty> * 3, [<ore:plateTin>]);
-
-# Basic Machine Casing (Just 8 Iron Plates in a circle
-recipes.addShaped(MachineCasing, [
-[IronPlate, IronPlate, IronPlate],
-[IronPlate, null, IronPlate],
-[IronPlate, IronPlate, IronPlate]]);
 
 # Electronic Circuit
 recipes.addShaped(ElectronicCircuit, [
@@ -131,6 +140,97 @@ recipes.addShaped(AdvancedCircuit, [
 [<ore:dustLapis>, ElectronicCircuit, <ore:dustLapis>],
 [<ore:dustRedstone>, <ore:dustGlowstone>, <ore:dustRedstone>]]);
 
+#----- Machine Casings Redone -----#
+
+# Basic Machine Casing (Just 8 Iron Plates in a circle)
+recipes.addShaped(MachineCasing, [
+[IronPlate, IronPlate, IronPlate],
+[IronPlate, null, IronPlate],
+[IronPlate, IronPlate, IronPlate]]);
+# GT Heat Proof Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:11>);
+recipes.addShaped(<gregtech:gt.blockcasings:11>, [
+[<ore:plateInvar>, null, <ore:plateInvar>],
+[<ore:plateInvar>, <gregtech:gt.blockmachines:4398>, <ore:plateInvar>],
+[<ore:plateInvar>, null, <ore:plateInvar>]]);
+# GT Solid Steel Machine Casing
+recipes.remove(<gregtech:gt.blockcasings2:0>);
+recipes.addShaped(<gregtech:gt.blockcasings2:0>, [
+[<ore:plateSteel>, null, <ore:plateSteel>],
+[<ore:plateSteel>, <gregtech:gt.blockmachines:4401>, <ore:plateSteel>],
+[<ore:plateSteel>, null, <ore:plateSteel>]]);
+# GT Frost Proof Machine Casing
+recipes.remove(<gregtech:gt.blockcasings2:1>);
+recipes.addShaped(<gregtech:gt.blockcasings2:1>, [
+[<ore:plateAluminium>, null, <ore:plateAluminium>],
+[<ore:plateAluminium>, <gregtech:gt.blockmachines:4115>, <ore:plateAluminium>],
+[<ore:plateAluminium>, null, <ore:plateAluminium>]]);
+# GT ULV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:0>);
+recipes.addShaped(<gregtech:gt.blockcasings:0>, [
+[<gregtech:gt.metaitem.01:17304>, <gregtech:gt.metaitem.01:17304>, <gregtech:gt.metaitem.01:17304>],
+[<gregtech:gt.metaitem.01:17304>, null, <gregtech:gt.metaitem.01:17304>],
+[<gregtech:gt.metaitem.01:17304>, <gregtech:gt.metaitem.01:17304>, <gregtech:gt.metaitem.01:17304>]]);
+# GT LV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:1>);
+recipes.addShaped(<gregtech:gt.blockcasings:1>, [
+[<ore:plateSteel>, <ore:plateSteel>, <ore:plateSteel>],
+[<ore:plateSteel>, null, <ore:plateSteel>],
+[<ore:plateSteel>, <ore:plateSteel>, <ore:plateSteel>]]);
+# GT MV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:2>);
+recipes.addShaped(<gregtech:gt.blockcasings:2>, [
+[<ore:plateAluminium>, <ore:plateAluminium>, <ore:plateAluminium>],
+[<ore:plateAluminium>, null, <ore:plateAluminium>],
+[<ore:plateAluminium>, <ore:plateAluminium>, <ore:plateAluminium>]]);
+# GT HV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:3>);
+recipes.addShaped(<gregtech:gt.blockcasings:3>, [
+[<gregtech:gt.metaitem.01:17306>, <gregtech:gt.metaitem.01:17306>, <gregtech:gt.metaitem.01:17306>],
+[<gregtech:gt.metaitem.01:17306>, null, <gregtech:gt.metaitem.01:17306>],
+[<gregtech:gt.metaitem.01:17306>, <gregtech:gt.metaitem.01:17306>, <gregtech:gt.metaitem.01:17306>]]);
+# GT EV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:4>);
+recipes.addShaped(<gregtech:gt.blockcasings:4>, [
+[<ore:plateTitanium>, <ore:plateTitanium>, <ore:plateTitanium>],
+[<ore:plateTitanium>, null, <ore:plateTitanium>],
+[<ore:plateTitanium>, <ore:plateTitanium>, <ore:plateTitanium>]]);
+# GT IV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:5>);
+recipes.addShaped(<gregtech:gt.blockcasings:5>, [
+[<gregtech:gt.metaitem.01:17316>, <gregtech:gt.metaitem.01:17316>, <gregtech:gt.metaitem.01:17316>],
+[<gregtech:gt.metaitem.01:17316>, null, <gregtech:gt.metaitem.01:17316>],
+[<gregtech:gt.metaitem.01:17316>, <gregtech:gt.metaitem.01:17316>, <gregtech:gt.metaitem.01:17316>]]);
+# GT LuV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:6>);
+recipes.addShaped(<gregtech:gt.blockcasings:6>, [
+[<gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>],
+[<gregtech:gt.metaitem.01:17030>, null, <gregtech:gt.metaitem.01:17030>],
+[<gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>]]);
+# GT ZPM Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:7>);
+recipes.addShaped(<gregtech:gt.blockcasings:7>, [
+[<ore:plateIridium>, <ore:plateIridium>, <ore:plateIridium>],
+[<ore:plateIridium>, null, <ore:plateIridium>],
+[<ore:plateIridium>, <ore:plateIridium>, <ore:plateIridium>]]);
+# GT UV Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:8>);
+recipes.addShaped(<gregtech:gt.blockcasings:8>, [
+[<ore:plateOsmium>, <ore:plateOsmium>, <ore:plateOsmium>],
+[<ore:plateOsmium>, null, <ore:plateOsmium>],
+[<ore:plateOsmium>, <ore:plateOsmium>, <ore:plateOsmium>]]);
+# GT MAX Machine Casing
+recipes.remove(<gregtech:gt.blockcasings:9>);
+recipes.addShaped(<gregtech:gt.blockcasings:9>, [
+[<gregtech:gt.metaitem.01:17129>, <gregtech:gt.metaitem.01:17129>, <gregtech:gt.metaitem.01:17129>],
+[<gregtech:gt.metaitem.01:17129>, null, <gregtech:gt.metaitem.01:17129>],
+[<gregtech:gt.metaitem.01:17129>, <gregtech:gt.metaitem.01:17129>, <gregtech:gt.metaitem.01:17129>]]);
+# TechReborn Advanced Machine Casing
+recipes.remove(<techreborn:machinecasing:2>);
+recipes.addShaped(<techreborn:machinecasing:2> * 4, [
+[<gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>],
+[<ore:circuitAdvanced>, <techreborn:highlyadvancedmachine>, <ore:circuitAdvanced>],
+[<gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>, <gregtech:gt.metaitem.01:17030>]]);
 
 # Energium Dust 
 recipes.addShaped(EnergiumDust * 9, [
@@ -194,40 +294,15 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 #======= IC²/MFR Furnace Conversions =====#
 
 # MFR Raw Rubber = Rubber
-recipes.remove(<gregtech:gt.metaitem.01:11880>);
-furnace.remove(<gregtech:gt.metaitem.01:11880>);
-furnace.remove(<gregtech:gt.metaitem.01:2874>); #Polyethylene pulp
+furnace.remove(<gregtech:gt.metaitem.01:11880>); # Original Rubber Ingot Furnace Recipe
+furnace.remove(<gregtech:gt.metaitem.01:2874>); # Polyethylene pulp
 furnace.addRecipe(Rubber, <MineFactoryReloaded:rubber.raw>);
 furnace.addRecipe(Rubber, <IC2:itemHarz>);
 furnace.addRecipe(<gregtech:gt.metaitem.01:11880>, <IC2:itemRubber>); # Smelt rubber into rubber ingots
 
-#======= IC² Extractor Conversions =======#
-
-Extractor.addRecipe(<IC2:itemRubber>, <IC2:blockRubLeaves> * 4);
-Extractor.addRecipe(<IC2:itemRubber>, <MineFactoryReloaded:rubberwood.leaves> * 4);
-Extractor.addRecipe(<IC2:itemRubber>, <IC2:blockRubSapling>);
-Extractor.addRecipe(<IC2:itemRubber>, <MineFactoryReloaded:rubberwood.sapling>);
-Extractor.addRecipe(<IC2:itemRubber> * 2, <IC2:blockRubWood>);
-Extractor.addRecipe(<IC2:itemRubber> * 2, <MineFactoryReloaded:rubberwood.log>);
-Extractor.addRecipe(<IC2:itemRubber> * 3, <IC2:itemHarz>);
-Extractor.addRecipe(<IC2:itemRubber> * 3, <MineFactoryReloaded:rubber.raw>);
-#======= Thermal Centrifuge ======#
-
-ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <gregtech:gt.metaitem.01:2830>, 320);
-ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <techreborn:dust:32>, 320);
-
 #======= IC² Macerator Conversions =======#
 
-# Removes Crushed Ore Recipes
-recipes.remove(CrushedCopper);
-recipes.remove(CrushedGold);
-recipes.remove(CrushedIron);
-recipes.remove(CrushedLead);
-recipes.remove(CrushedSilver);
-recipes.remove(CrushedTin);
-recipes.remove(CrushedUranium);
-
-# Macerates Ores Straight to Dusts
+# Macerates Ores Straight to Purified Dusts
 Macerator.addRecipe(<IC2:itemDust:5> * 2, <ore:oreIron>);
 Macerator.addRecipe(<IC2:itemDust:3> * 2, <ore:oreCopper>);
 Macerator.addRecipe(<IC2:itemDust:4> * 2, <ore:oreGold>);
@@ -278,7 +353,40 @@ Macerator.addRecipe(<gregtech:gt.metaitem.01:2830> * 2, <gregtech:gt.blockores:8
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2830> * 2, <techreborn:techreborn.ore:0>);
 Macerator.addRecipe(<MineFactoryReloaded:plastic.raw>, <gregtech:gt.metaitem.01:11874>);
 Macerator.addRecipe(<BigReactors:BRIngot:4> * 2, <BigReactors:YelloriteOre>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 2, <ore:oreBauxite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 4, <ore:oreNetherrackBauxite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 2, <ore:oreBlackgraniteBauxite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 4, <ore:oreEndstoneBauxite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 2, <ore:oreRedgraniteBauxite>);
+Macerator.addRecipe(<minecraft:dye:4> * 12, <ore:oreLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreNetherrackLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreNetherLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreEndstoneLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 12, <ore:oreRedgraniteLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 12, <ore:oreBlackgraniteLapis>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreSodalite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <ore:oreNetherrackSodalite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <ore:oreEndstoneSodalite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <techreborn:techreborn.ore:11>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreRedgraniteSodalite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreBlackgraniteSodalite>);
 
+#======= IC² Extractor Conversions =======#
+
+Extractor.addRecipe(<IC2:itemRubber>, <IC2:blockRubLeaves> * 4);
+Extractor.addRecipe(<IC2:itemRubber>, <MineFactoryReloaded:rubberwood.leaves> * 4);
+Extractor.addRecipe(<IC2:itemRubber>, <IC2:blockRubSapling>);
+Extractor.addRecipe(<IC2:itemRubber>, <MineFactoryReloaded:rubberwood.sapling>);
+Extractor.addRecipe(<IC2:itemRubber> * 2, <IC2:blockRubWood>);
+Extractor.addRecipe(<IC2:itemRubber> * 2, <MineFactoryReloaded:rubberwood.log>);
+Extractor.addRecipe(<IC2:itemRubber> * 3, <IC2:itemHarz>);
+Extractor.addRecipe(<IC2:itemRubber> * 3, <MineFactoryReloaded:rubber.raw>);
+
+#======= IC² Thermal Centrifuge ======#
+
+ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <gregtech:gt.metaitem.01:2830>, 320);
+ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <techreborn:dust:32>, 320);
+ThermalCentrifuge.addRecipe([<gregtech:gt.metaitem.01:7822>, <gregtech:gt.metaitem.01:375>, <gregtech:gt.metaitem.01:2299>], <gregtech:gt.metaitem.01:2822>, 320);
 
 #*********************** Gregtech Recipe Changes/Additions *****************************#
 # Note: For all Gregtech machine recipes, all recipes marked with '//EDITCONFIG' MUST   #

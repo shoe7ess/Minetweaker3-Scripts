@@ -1,11 +1,12 @@
 # Name: ExtraBiomesXLChanges
 # Version Information: ExtraBiomesXLChanges v3.16.4, Minecraft v1.7.10
 # Author: shoe7ess
-# Script Version: 1.1
+# Script Version: 1.3
 
 #========================================================================================#
 # Purpose: Allows ExtraBiomesXL to use the vanilla crafting recipes for slabs as well as #
-#		   adding integration into Natura Crafting Tables                                #
+#		   adding integration into Natura Crafting Tables, pressure plates, etc.         #
+#          Also includes integration with Forestry for MC1.7.10                          #
 #========================================================================================#
 
 import minetweaker.item.IIngredient;
@@ -64,7 +65,7 @@ val FusewoodPressure = <Natura:pressureplate.fusewood>;
 
 # Vanilla Planks
 val MinecraftPlanks = <minecraft:planks:*>;
-
+val Sticks = <minecraft:stick>;
 # Vanilla Pressure Plates
 val PressurePlate = <minecraft:wooden_pressure_plate>;
 
@@ -193,6 +194,34 @@ recipes.addShaped(RedBrickSlab * 6, [
 [null, null, null],
 [RedBrick, RedBrick, RedBrick]]);
 
+#------ Planks to Sticks (Why the hell isn't this in the game? ------#
+recipes.addShaped(Sticks, [
+[SakuraPlanks],
+[SakuraPlanks]]);
+recipes.addShaped(Sticks, [
+[RedwoodPlanks],
+[RedwoodPlanks]]);
+recipes.addShaped(Sticks, [
+[FirwoodPlanks],
+[FirwoodPlanks]]);
+recipes.addShaped(Sticks, [
+[AcaciaPlanks],
+[AcaciaPlanks]]);
+recipes.addShaped(Sticks, [
+[CypressPlanks],
+[CypressPlanks]]);
+recipes.addShaped(Sticks, [
+[JapaneseMaplePlanks],
+[JapaneseMaplePlanks]]);
+recipes.addShaped(Sticks, [
+[RainbowEucalyptusPlanks],
+[RainbowEucalyptusPlanks]]);
+recipes.addShaped(Sticks, [
+[AutumnPlanks],
+[AutumnPlanks]]);
+recipes.addShaped(Sticks, [
+[BaldCypressPlanks],
+[BaldCypressPlanks]]);
 #------ Double Slab Recipes (No Current Use) -----#
 # ExtrabiomesXL Double Slabs
 recipes.addShaped(SakuraDoubleSlab, [
@@ -408,5 +437,7 @@ recipes.addShapeless(FusewoodPlanks, [CypressPlanks, <minecraft:dye:6>]); # Mix 
 recipes.addShapeless(FusewoodPlanks, [AutumnPlanks, <minecraft:dye:6>]);
 recipes.addShapeless(AmaranthPlanks, [CypressPlanks, <minecraft:dye:5>]); # Mix with Purple Dye
 recipes.addShapeless(AmaranthPlanks, [AutumnPlanks, <minecraft:dye:5>]);
+recipes.addShapeless(SakuraNaturaPlanks, [CypressPlanks]);
+recipes.addShapeless(SakuraNaturaPlanks, [SakuraPlanks]);
 
 print("Initialized 'Extra Biomex XL Changes' Script");

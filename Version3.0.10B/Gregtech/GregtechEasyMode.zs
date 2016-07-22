@@ -1,7 +1,7 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
 # Author: shoe7ess
-# Script Version: 1.1
+# Script Version: 1.4.1
 
 #=======================================================================#
 # Purpose: Make IC² and GregTech work as they did in 1.4:               #
@@ -107,6 +107,10 @@ recipes.remove(CrushedLead);
 recipes.remove(CrushedSilver);
 recipes.remove(CrushedTin);
 recipes.remove(CrushedUranium);
+recipes.remove(<gregtech:gt.metaitem.01:5019>); # Crushed Aluminium Ore
+
+# Turn Ender Pearl Dust + Iron Dust into 9 Pulsating Iron Nuggets
+recipes.addShapeless(<EnderIO:itemMaterial:3> * 9, [<ore:dustIron>, <ore:dustEnderPearl>]);
 
 #******************* IC² Recipe Additions/Changes *******************#
 
@@ -264,6 +268,20 @@ recipes.addShapeless(GoldCasing * 2, [<ore:plateGold>, ForgeHammer]);
 recipes.addShapeless(IronCasing * 2, [<ore:plateIron>, ForgeHammer]);
 recipes.addShapeless(LeadCasing * 2, [<ore:plateLead>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:17874>, [<gregtech:gt.metaitem.01:11874>, ForgeHammer]);
+recipes.addShapeless(<IC2:itemDust:4>, [<ore:oreGold>, ForgeHammer]);
+recipes.addShapeless(<IC2:itemDust:5>, [<ore:oreIron>, ForgeHammer]);
+recipes.addShapeless(<IC2:itemDust:3>, [<ore:oreCopper>, ForgeHammer]);
+recipes.addShapeless(<IC2:itemDust:7>, [<ore:oreTin>, ForgeHammer]);
+recipes.addShapeless(<gregtech:gt.metaitem.01:2098>, [<ore:oreUranium>, ForgeHammer]);
+recipes.addShapeless(<IC2:itemDust:6>, [<ore:oreSilver>, ForgeHammer]);
+recipes.addShapeless(<IC2:itemDust:10>, [<ore:oreLead>, ForgeHammer]);
+recipes.addShapeless(ObsidianDust, [ObsidianStone, ForgeHammer]);
+recipes.addShapeless(SteelDust, [<ore:oreSteel>, ForgeHammer]);
+recipes.addShapeless(<BigReactors:BRIngot:4>, [<BigReactors:YelloriteOre>, ForgeHammer]);
+recipes.addShapeless(<gregtech:gt.metaitem.01:2822>, [<ore:oreBauxite>, ForgeHammer]);
+recipes.addShapeless(<minecraft:dye:4> * 6, [<ore:oreLapis>, ForgeHammer]);
+recipes.addShapeless(<minecraft:dye:4> * 6, [<ore:oreLapis>, <ImmersiveEngineering:tool:0>]);
+recipes.addShapeless(<gregtech:gt.metaitem.01:8525>, [<ore:oreSodalite>, ForgeHammer]);
 
 # RE-Battery
 recipes.addShaped(REBattery, [
@@ -370,6 +388,7 @@ Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <ore:oreEndstoneSodalit
 Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <techreborn:techreborn.ore:11>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreRedgraniteSodalite>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreBlackgraniteSodalite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2019> * 2, <ore:oreAluminium>);
 
 #======= IC² Extractor Conversions =======#
 
@@ -474,5 +493,6 @@ recipes.addShapeless(<gregtech:gt.blockmachines:391>, [<IC2:blockMachine:5>]);
 # Thermal Washer
 recipes.addShapeless(<gregtech:gt.blockmachines:392>, [<AdvancedMachines:advancedmachines.block:4>]);
 
+recipes.addShapeless(<IC2NuclearControl:ItemEnergySensorLocationCard:*>, [<IC2NuclearControl:RFSensorCard:*>]);
 
 print("Initialized 'GregtechEasyMode.zs' Script");

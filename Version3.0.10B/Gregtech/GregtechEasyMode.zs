@@ -440,8 +440,19 @@ recipes.addShapeless(SteelDust, [<ore:dustIron>, <ore:dustCoal> * 2]);
 # NAND Chip from 2x Redstone
 recipes.addShapeless(NANDChip, [Redstone, Redstone]);
 
-#----- IC² Machines to Gregtech Counterpart Machine Conversions -----#
+#----- IC² Machines to Gregtech Counterpart Machine Shapeless Conversions -----#
 
+#***** Transformers *****#
+# IC² LV-Transformer to Low Voltage Transformer
+recipes.addShapeless(<gregtech:gt.blockmachines:21>, [<IC2:blockElectric:3>]);
+# IC² MV-Transformer to Medium Voltage Transformer
+recipes.addShapeless(<gregtech:gt.blockmachines:22>, [<IC2:blockElectric:4>]);
+# IC² HV-Transformer to High Voltage Transformer
+recipes.addShapeless(<gregtech:gt.blockmachines:23>, [<IC2:blockElectric:5>]);
+# IC² EV-Transformer to Extreme Transformer
+recipes.addShapeless(<gregtech:gt.blockmachines:24>, [<IC2:blockElectric:6>]);
+
+#***** Basic Machines *****#
 # Basic Macerator
 recipes.addShapeless(<gregtech:gt.blockmachines:301>, [<IC2:blockMachine:3>]);
 # Rotary Macerator

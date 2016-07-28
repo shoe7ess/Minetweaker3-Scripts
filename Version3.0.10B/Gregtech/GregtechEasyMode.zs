@@ -1,7 +1,7 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
 # Author: shoe7ess
-# Script Version: 1.4.1
+# Script Version: 1.5
 
 #=======================================================================#
 # Purpose: Make IC² and GregTech work as they did in 1.4:               #
@@ -54,6 +54,9 @@ print("Initializing 'GregtechEasyMode.zs' with IC2 Recipe Changes Minetweaker3 S
 # General Coal to Charcoal Converter (Just a little helpful script that allows coal/charcoal to be placed in a crafting grid and converted to its' counterpart)
 recipes.addShapeless(<minecraft:coal:0>, [<minecraft:coal:1>]);
 recipes.addShapeless(<minecraft:coal:1>, [<minecraft:coal:0>]);
+
+# Clay Block back to Clay Balls
+recipes.addShapeless(<minecraft:clay_ball> * 4, [<minecraft:clay>]);
 
 #------------------------- Gregtech IC² Compatability ----------------------#
 
@@ -109,13 +112,32 @@ recipes.remove(CrushedTin);
 recipes.remove(CrushedUranium);
 recipes.remove(<gregtech:gt.metaitem.01:5019>); # Crushed Aluminium Ore
 
+# Any ore in a crafting window turns into IC² Ore 
+# (useful if you have multiple mod's generating the same ores)
+
+recipes.addShapeless(<IC2:blockOreTin>, [<ore:oreTin>]);
+recipes.addShapeless(<IC2:blockOreCopper>, [<ore:oreCopper>]);
+recipes.addShapeless(<IC2:blockOreLead>, [<ore:oreLead>]);
+recipes.addShapeless(<IC2:blockOreUran>, [<ore:oreUranium>]);
+
+# Those with Tinker's Construct can benefit from a way to store rubber in block form
+recipes.addShapeless(<IC2:itemRubber> * 9, [<TConstruct:GlueBlock>]);
+recipes.addShapeless(<TConstruct:GlueBlock>, [<IC2:itemRubber> * 9]);
+
 # Turn Ender Pearl Dust + Iron Dust into 9 Pulsating Iron Nuggets
 recipes.addShapeless(<EnderIO:itemMaterial:3> * 9, [<ore:dustIron>, <ore:dustEnderPearl>]);
 
 #******************* IC² Recipe Additions/Changes *******************#
 
+# MFR to IC² Sapling Exchange
+recipes.addShapeless(<IC2:blockRubSapling>, [<MineFactoryReloaded:rubberwood.sapling>]);
+recipes.addShapeless(<MineFactoryReloaded:rubberwood.sapling>, [<IC2:blockRubSapling>]);
+
 # Empty Cell Recipe
 recipes.addShapeless(<IC2:itemCellEmpty> * 3, [<ore:plateTin>]);
+
+# Universal Fluid Cell
+recipes.addShapeless(<IC2:itemFluidCell> * 3, [<gregtech:gt.metaitem.01:18057>]);
 
 # Electronic Circuit
 recipes.addShaped(ElectronicCircuit, [
@@ -309,6 +331,13 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 [<ore:dustCoal>, <ore:dustCoal>],
 [<ore:dustCoal>, <ore:dustCoal>]]);
 
+# Refined Iron = Iron in Furnace
+furnace.remove(<minecraft:iron_ingot>);
+furnace.addRecipe(<IC2:itemIngot:3>, <minecraft:iron_ingot>);
+recipes.addShapeless(<IC2:itemPlates:5>, [<IC2:itemIngot:3>, ForgeHammer]);
+Compressor.addRecipe(<IC2:itemDensePlates:5>, <IC2:itemPlates:5> * 9);
+
+
 #======= IC²/MFR Furnace Conversions =====#
 
 # MFR Raw Rubber = Rubber
@@ -320,77 +349,172 @@ furnace.addRecipe(<gregtech:gt.metaitem.01:11880>, <IC2:itemRubber>); # Smelt ru
 
 #======= IC² Macerator Conversions =======#
 
-# Macerates Ores Straight to Purified Dusts
-Macerator.addRecipe(<IC2:itemDust:5> * 2, <ore:oreIron>);
-Macerator.addRecipe(<IC2:itemDust:3> * 2, <ore:oreCopper>);
-Macerator.addRecipe(<IC2:itemDust:4> * 2, <ore:oreGold>);
-Macerator.addRecipe(<IC2:itemDust:7> * 2, <ore:oreTin>);
+#--- Increased Alternate Ore Production, Gregtech Ores Macerate to Dust ---#
+
+# Also: if you automate your macerator to output to your furnace you may have found yourself 
+#	with no use for several IC² machines (your crushed ores are now ingots). Thus, I added in a macerator
+#	recipe to rectify this: 10 nuggets = 1 crushed ore (temporary until I can figure out how to implement
+#	a recipe via alloy furnace or something similar that combines nuggets with stone dust and outputs the
+#	associated crushed ore.
+
+Macerator.addRecipe(<IC2:itemCrushedOre:0> * 2, <ore:oreIron>);
+Macerator.addRecipe(<IC2:itemCrushedOre:0> * 4, <ore:oreNetherIron>);
+Macerator.addRecipe(<IC2:itemCrushedOre:0> * 4, <ore:oreNetherrackIron>);
+Macerator.addRecipe(<IC2:itemCrushedOre:0> * 5, <ore:oreEndstoneIron>);
+Macerator.addRecipe(<IC2:itemCrushedOre:0> * 4, <ore:oreBlackgraniteIron>);
+Macerator.addRecipe(<IC2:itemCrushedOre:0> * 4, <ore:oreRedgraniteIron>);
+Macerator.addRecipe(<IC2:itemCrushedOre:0>, <ore:nuggetIron> * 10);
+
+Macerator.addRecipe(<IC2:itemCrushedOre:1> * 2, <ore:oreCopper>);
+Macerator.addRecipe(<IC2:itemCrushedOre:1> * 4, <ore:oreNetherCopper>);
+Macerator.addRecipe(<IC2:itemCrushedOre:1> * 4, <ore:oreNetherrackCopper>);
+Macerator.addRecipe(<IC2:itemCrushedOre:1> * 5, <ore:oreEndstoneCopper>);
+Macerator.addRecipe(<IC2:itemCrushedOre:1> * 4, <ore:oreBlackgraniteCopper>);
+Macerator.addRecipe(<IC2:itemCrushedOre:1> * 4, <ore:oreRedgraniteCopper>);
+Macerator.addRecipe(<IC2:itemCrushedOre:1>, <ore:nuggetCopper> * 10);
+
+Macerator.addRecipe(<IC2:itemCrushedOre:2> * 2, <ore:oreGold>);
+Macerator.addRecipe(<IC2:itemCrushedOre:2> * 4, <ore:oreNetherGold>);
+Macerator.addRecipe(<IC2:itemCrushedOre:2> * 4, <ore:oreNetherrackGold>);
+Macerator.addRecipe(<IC2:itemCrushedOre:2> * 5, <ore:oreEndstoneGold>);
+Macerator.addRecipe(<IC2:itemCrushedOre:2> * 4, <ore:oreBlackgraniteGold>);
+Macerator.addRecipe(<IC2:itemCrushedOre:2> * 4, <ore:oreRedgraniteGold>);
+Macerator.addRecipe(<IC2:itemCrushedOre:2>, <ore:nuggetGold> * 10);
+
+Macerator.addRecipe(<IC2:itemCrushedOre:3> * 2, <ore:oreTin>);
+Macerator.addRecipe(<IC2:itemCrushedOre:3> * 4, <ore:oreNetherTin>);
+Macerator.addRecipe(<IC2:itemCrushedOre:3> * 4, <ore:oreNetherrackTin>);
+Macerator.addRecipe(<IC2:itemCrushedOre:3> * 5, <ore:oreEndstoneTin>);
+Macerator.addRecipe(<IC2:itemCrushedOre:3> * 4, <ore:oreBlackgraniteTin>);
+Macerator.addRecipe(<IC2:itemCrushedOre:3> * 4, <ore:oreRedgraniteTin>);
+Macerator.addRecipe(<IC2:itemCrushedOre:3>, <ore:nuggetTin> * 10);
+
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 2, <ore:oreUranium>);
-Macerator.addRecipe(<IC2:itemDust:6> * 2, <ore:oreSilver>);
-Macerator.addRecipe(<IC2:itemDust:10> * 2, <ore:oreLead>);
-Macerator.addRecipe(<IC2:itemDust:5> * 4, <ore:oreNetherIron>);
-Macerator.addRecipe(<IC2:itemDust:5> * 4, <ore:oreNetherrackIron>);
-Macerator.addRecipe(<IC2:itemDust:5> * 4, <ore:oreEndstoneIron>);
-Macerator.addRecipe(<IC2:itemDust:5> * 2, <ore:oreBlackgraniteIron>);
-Macerator.addRecipe(<IC2:itemDust:5> * 2, <ore:oreRedgraniteIron>);
-Macerator.addRecipe(<IC2:itemDust:3> * 4, <ore:oreNetherCopper>);
-Macerator.addRecipe(<IC2:itemDust:3> * 4, <ore:oreNetherrackCopper>);
-Macerator.addRecipe(<IC2:itemDust:3> * 4, <ore:oreEndstoneCopper>);
-Macerator.addRecipe(<IC2:itemDust:3> * 2, <ore:oreBlackgraniteCopper>);
-Macerator.addRecipe(<IC2:itemDust:3> * 2, <ore:oreRedgraniteCopper>);
-Macerator.addRecipe(<IC2:itemDust:4> * 4, <ore:oreNetherGold>);
-Macerator.addRecipe(<IC2:itemDust:4> * 4, <ore:oreNetherrackGold>);
-Macerator.addRecipe(<IC2:itemDust:4> * 4, <ore:oreEndstoneGold>);
-Macerator.addRecipe(<IC2:itemDust:4> * 2, <ore:oreBlackgraniteGold>);
-Macerator.addRecipe(<IC2:itemDust:4> * 2, <ore:oreRedgraniteGold>);
-Macerator.addRecipe(<IC2:itemDust:7> * 4, <ore:oreNetherTin>);
-Macerator.addRecipe(<IC2:itemDust:7> * 4, <ore:oreNetherrackTin>);
-Macerator.addRecipe(<IC2:itemDust:7> * 4, <ore:oreEndstoneTin>);
-Macerator.addRecipe(<IC2:itemDust:7> * 2, <ore:oreBlackgraniteTin>);
-Macerator.addRecipe(<IC2:itemDust:7> * 2, <ore:oreRedgraniteTin>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreNetherUranium>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreNetherrackUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreEndstoneUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 2, <ore:oreBlackgraniteUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 2, <ore:oreRedgraniteUranium>);
-Macerator.addRecipe(<IC2:itemDust:6> * 4, <ore:oreNetherSilver>);
-Macerator.addRecipe(<IC2:itemDust:6> * 4, <ore:oreNetherrackSilver>);
-Macerator.addRecipe(<IC2:itemDust:6> * 4, <ore:oreEndstoneSilver>);
-Macerator.addRecipe(<IC2:itemDust:6> * 2, <ore:oreBlackgraniteSilver>);
-Macerator.addRecipe(<IC2:itemDust:6> * 2, <ore:oreRedgraniteSilver>);
-Macerator.addRecipe(<IC2:itemDust:10> * 4, <ore:oreNetherLead>);
-Macerator.addRecipe(<IC2:itemDust:10> * 4, <ore:oreNetherrackLead>);
-Macerator.addRecipe(<IC2:itemDust:10> * 4, <ore:oreEndstoneLead>);
-Macerator.addRecipe(<IC2:itemDust:10> * 2, <ore:oreBlackgraniteLead>);
-Macerator.addRecipe(<IC2:itemDust:10> * 2, <ore:oreRedgraniteLead>);
-Macerator.addRecipe(ObsidianDust * 2, ObsidianStone);
-Macerator.addRecipe(SteelDust * 2, <ore:oreSteel>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 5, <ore:oreEndstoneUranium>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreBlackgraniteUranium>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreRedgraniteUranium>);
+
+Macerator.addRecipe(<IC2:itemCrushedOre:5> * 2, <ore:oreSilver>);
+Macerator.addRecipe(<IC2:itemCrushedOre:5> * 4, <ore:oreNetherSilver>);
+Macerator.addRecipe(<IC2:itemCrushedOre:5> * 4, <ore:oreNetherrackSilver>);
+Macerator.addRecipe(<IC2:itemCrushedOre:5> * 5, <ore:oreEndstoneSilver>);
+Macerator.addRecipe(<IC2:itemCrushedOre:5> * 4, <ore:oreBlackgraniteSilver>);
+Macerator.addRecipe(<IC2:itemCrushedOre:5> * 4, <ore:oreRedgraniteSilver>);
+Macerator.addRecipe(<IC2:itemCrushedOre:5>, <ore:nuggetSilver> * 10);
+
+Macerator.addRecipe(<IC2:itemCrushedOre:6> * 2, <ore:oreLead>);
+Macerator.addRecipe(<IC2:itemCrushedOre:6> * 4, <ore:oreNetherLead>);
+Macerator.addRecipe(<IC2:itemCrushedOre:6> * 4, <ore:oreNetherrackLead>);
+Macerator.addRecipe(<IC2:itemCrushedOre:6> * 5, <ore:oreEndstoneLead>);
+Macerator.addRecipe(<IC2:itemCrushedOre:6> * 4, <ore:oreBlackgraniteLead>);
+Macerator.addRecipe(<IC2:itemCrushedOre:6> * 4, <ore:oreRedgraniteLead>);
+Macerator.addRecipe(<IC2:itemCrushedOre:6>, <ore:nuggetLead> * 10);
+
+Macerator.addRecipe(<Railcraft:cube:4>, ObsidianStone);
+
+Macerator.addRecipe(<aobd:crushedSteel> * 2, <ore:oreSteel>);
+Macerator.addRecipe(<aobd:crushedSteel> * 4, <ore:oreNetherrackSteel>);
+Macerator.addRecipe(<aobd:crushedSteel> * 4, <ore:oreBlackgraniteSteel>);
+Macerator.addRecipe(<aobd:crushedSteel> * 5, <ore:oreEndstoneSteel>);
+Macerator.addRecipe(<aobd:crushedSteel> * 4, <ore:oreRedgraniteSteel>);
+Macerator.addRecipe(<aobd:crushedSteel>, <ore:nuggetSteel> * 10);
+
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2874>, <IC2:itemRubber>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2880>, <gregtech:gt.metaitem.01:11880>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2830> * 2, <gregtech:gt.blockores:830>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2830> * 2, <techreborn:techreborn.ore:0>);
 Macerator.addRecipe(<MineFactoryReloaded:plastic.raw>, <gregtech:gt.metaitem.01:11874>);
+
 Macerator.addRecipe(<BigReactors:BRIngot:4> * 2, <BigReactors:YelloriteOre>);
+
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 2, <ore:oreBauxite>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 4, <ore:oreNetherrackBauxite>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 2, <ore:oreBlackgraniteBauxite>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 4, <ore:oreEndstoneBauxite>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 2, <ore:oreRedgraniteBauxite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 4, <ore:oreBlackgraniteBauxite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 5, <ore:oreEndstoneBauxite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2822> * 4, <ore:oreRedgraniteBauxite>);
+
 Macerator.addRecipe(<minecraft:dye:4> * 12, <ore:oreLapis>);
 Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreNetherrackLapis>);
 Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreNetherLapis>);
-Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreEndstoneLapis>);
-Macerator.addRecipe(<minecraft:dye:4> * 12, <ore:oreRedgraniteLapis>);
-Macerator.addRecipe(<minecraft:dye:4> * 12, <ore:oreBlackgraniteLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 30, <ore:oreEndstoneLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreRedgraniteLapis>);
+Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreBlackgraniteLapis>);
+
+Macerator.addRecipe(<IC2:itemDust:2> * 6, <ore:oreCoal>);
+Macerator.addRecipe(<IC2:itemDust:2> * 12, <ore:oreNetherrackCoal>);
+Macerator.addRecipe(<IC2:itemDust:2> * 12, <ore:oreNetherCoal>);
+Macerator.addRecipe(<IC2:itemDust:2> * 15, <ore:oreEndstoneCoal>);
+Macerator.addRecipe(<IC2:itemDust:2> * 12, <ore:oreRedgraniteCoal>);
+Macerator.addRecipe(<IC2:itemDust:2> * 12, <ore:oreBlackgraniteCoal>);
+
 Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreSodalite>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <ore:oreNetherrackSodalite>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <ore:oreEndstoneSodalite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 30, <ore:oreEndstoneSodalite>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <techreborn:techreborn.ore:11>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreRedgraniteSodalite>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 12, <ore:oreBlackgraniteSodalite>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2019> * 2, <ore:oreAluminium>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <ore:oreRedgraniteSodalite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:8525> * 24, <ore:oreBlackgraniteSodalite>);
 
-#======= IC² Extractor Conversions =======#
+Macerator.addRecipe(<techreborn:crushedore:0> * 4, <ore:oreNetherrackAluminium>);
+Macerator.addRecipe(<techreborn:crushedore:0> * 4, <ore:oreBlackgraniteAluminium>);
+Macerator.addRecipe(<techreborn:crushedore:0> * 5, <ore:oreEndstoneAluminium>);
+Macerator.addRecipe(<techreborn:crushedore:0> * 4, <ore:oreRedgraniteAluminium>);
+Macerator.addRecipe(<techreborn:crushedore:0>, <ore:nuggetAluminium> * 10);
+
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2918> * 4, <ore:oreNetherrackIlmenite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2918> * 4, <ore:oreBlackgraniteIlmenite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2918> * 5, <ore:oreEndstoneIlmenite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2918> * 4, <ore:oreRedgraniteIlmenite>);
+
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5840> * 2, <ore:oreTetrahedrite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5840> * 4, <ore:oreNetherrackTetrahedrite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5840> * 4, <ore:oreBlackgraniteTetrahedrite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5840> * 5, <ore:oreEndstoneTetrahedrite>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5840> * 4, <ore:oreRedgraniteTetrahedrite>);
+furnace.remove(<gregtech:gt.metaitem.01:9035>, <ore:dustTetrahedrite>);    # The next few may be removed
+furnace.remove(<gregtech:gt.metaitem.01:9035>, <ore:crushedTetrahedrite>); # (filters exist for a reason)
+furnace.remove(<gregtech:gt.metaitem.01:11035>, <ore:dustImpureTetrahedrite>);
+furnace.addRecipe(<gregtech:gt.metaitem.01:11035>, <ore:dustTetrahedrite>);
+
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2850>, <ore:stoneGraniteRed>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2849>, <ore:stoneGraniteBlack>);
+
+Macerator.addRecipe(<techreborn:crushedore:9> * 2, <ImmersiveEngineering:ore:4>);
+Macerator.addRecipe(<techreborn:crushedore:9> * 2, <gregtech:gt.blockores:34>);
+Macerator.addRecipe(<techreborn:crushedore:9> * 4, <ore:oreNetherNickel>);
+Macerator.addRecipe(<techreborn:crushedore:9> * 4, <ore:oreNetherrackNickel>);
+Macerator.addRecipe(<techreborn:crushedore:9> * 4, <ore:oreBlackgraniteNickel>);
+Macerator.addRecipe(<techreborn:crushedore:9> * 5, <ore:oreEndstoneNickel>);
+Macerator.addRecipe(<techreborn:crushedore:9> * 4, <ore:oreRedgraniteNickel>);
+Macerator.addRecipe(<techreborn:crushedore:9>, <ore:nuggetNickel> * 10);
+
+Macerator.addRecipe(<ThermalFoundation:material:36> * 2, <ThermalFoundation:Ore:4>);
+Macerator.addRecipe(<ThermalFoundation:material:36> * 4, <NetherOres:tile.netherores.ore.1:1>);
+Macerator.addRecipe(<ThermalFoundation:material:36>, <ThermalFoundation:material:100> * 10);
+furnace.remove(<gregtech:gt.metaitem.01:11034>, <ThermalFoundation:material:36>);
+furnace.addRecipe(<ThermalFoundation:material:68>, <ThermalFoundation:material:36>);
+
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5861> * 2, <ore:oreEmery>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5861> * 4, <ore:oreNetherrackEmery>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5861> * 4, <ore:oreBlackgraniteEmery>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5861> * 5, <ore:oreEndstoneEmery>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5861> * 4, <ore:oreRedgraniteEmery>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5861>, <gregtech:gt.metaitem.01:2861>);
+furnace.addRecipe(<eng_toolbox:gem>, <gregtech:gt.metaitem.01:5861>);
+
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 4, <appliedenergistics2:tile.OreQuartz>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 6, <ore:oreNetherrackCertusQuartz>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 6, <ore:oreBlackgraniteCertusQuartz>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 8, <ore:oreEndstoneCertusQuartz>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 6, <ore:oreRedgraniteCertusQuartz>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:4516> * 4, <appliedenergistics2:tile.OreQuartzCharged>);
+
+#======= Furnace Recipes for AE2 Certus Quartz =======#
+furnace.addRecipe(<gregtech:gt.metaitem.01:8516>, <gregtech:gt.metaitem.01:2516>);
+furnace.addRecipe(<appliedenergistics2:item.ItemMultiMaterial:1>, <gregtech:gt.metaitem.01:4516>);
+
+#======= IC² Extractor Changes =======#
 
 Extractor.addRecipe(<IC2:itemRubber>, <IC2:blockRubLeaves> * 4);
 Extractor.addRecipe(<IC2:itemRubber>, <MineFactoryReloaded:rubberwood.leaves> * 4);
@@ -400,12 +524,25 @@ Extractor.addRecipe(<IC2:itemRubber> * 2, <IC2:blockRubWood>);
 Extractor.addRecipe(<IC2:itemRubber> * 2, <MineFactoryReloaded:rubberwood.log>);
 Extractor.addRecipe(<IC2:itemRubber> * 3, <IC2:itemHarz>);
 Extractor.addRecipe(<IC2:itemRubber> * 3, <MineFactoryReloaded:rubber.raw>);
+Extractor.addRecipe(<IC2:itemRubber> * 9, <TConstruct:GlueBlock>);
+
+#======= IC² Compressor Changes ======#
+Compressor.addRecipe(<TConstruct:GlueBlock>, <IC2:itemRubber> * 9);
 
 #======= IC² Thermal Centrifuge ======#
 
 ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <gregtech:gt.metaitem.01:2830>, 320);
 ThermalCentrifuge.addRecipe([<techreborn:ingot:23>, <techreborn:ingot:16>], <techreborn:dust:32>, 320);
 ThermalCentrifuge.addRecipe([<gregtech:gt.metaitem.01:7822>, <gregtech:gt.metaitem.01:375>, <gregtech:gt.metaitem.01:2299>], <gregtech:gt.metaitem.01:2822>, 320);
+
+
+#-=-=- Storage Blocks De-craft to ingots -=-=-#
+
+# Iron Block (Shaped because shapeless gives dust) - Place Far Left/Right of Crafting Grid
+# ~ Had to use block + ingot to circumvent iron dust decrafting default
+recipes.addShapedMirrored(<minecraft:iron_ingot> * 10, [
+[<minecraft:iron_block>, <minecraft:iron_ingot>]]);
+
 
 #*********************** Gregtech Recipe Changes/Additions *****************************#
 # Note: For all Gregtech machine recipes, all recipes marked with '//EDITCONFIG' MUST   #
@@ -420,7 +557,9 @@ Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2802> * 8],  null, <minecraft:gra
 
 # Rubber to Raw Rubber Dust, Glue Cell [Unable to output liquid glue in array], and 50% chance of plantball
 //EDITCONFIG 'Gregtech/Recipes.cfg: centrifuge {' section (default line: 14261) add below "I:ic2.itemHarz_300=300" the line "I:ic2.itemRubber_300=300" in the "ic2.*item* lines
-Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <gregtech:gt.metaitem.01:30726>, <IC2:itemFuelPlantBall>,], null, <IC2:itemRubber>, null, null, [10000, 10000, 5000], 300, 5);
+Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <IC2:itemFuelPlantBall>], null, <IC2:itemRubber>, null, <liquid:glue> * 300, [10000, 5000], 300, 5);
+Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <gregtech:gt.metaitem.01:30726>, <IC2:itemFuelPlantBall>], null, <IC2:itemRubber>, <IC2:itemCellEmpty>, null, [10000, 10000, 5000], 300, 5);
+Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2896> * 3, <gregtech:gt.metaitem.01:30726>, <IC2:itemFuelPlantBall>], null, <IC2:itemRubber>, <IC2:itemFluidCell>, null, [10000, 10000, 5000], 300, 5);
 
 #===== Alloys Smelter Recipes =====#
 // Rules: OutputStack, InputStack1, InputStack2, Time in Ticks, EnergyUsage
@@ -439,6 +578,9 @@ recipes.addShapeless(SteelDust, [<ore:dustIron>, <ore:dustCoal> * 2]);
 
 # NAND Chip from 2x Redstone
 recipes.addShapeless(NANDChip, [Redstone, Redstone]);
+
+# Rubber Sheet with Forgehammer
+recipes.addShapeless(<gregtech:gt.metaitem.01:17880>, [<ore:ingotRubber>, ForgeHammer]);
 
 #----- IC² Machines to Gregtech Counterpart Machine Shapeless Conversions -----#
 

@@ -1,7 +1,7 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
 # Author: shoe7ess
-# Script Version: 1.5
+# Script Version: 1.5.1a
 
 #=======================================================================#
 # Purpose: Make IC² and GregTech work as they did in 1.4:               #
@@ -318,7 +318,10 @@ recipes.addShaped(AdvREBattery, [
 [BronzeCasing, <ore:dustLead>, BronzeCasing]]);
 
 # Energy Crystal
-recipes.addShapeless(EnergyCrystal, [EnergiumDust * 9]);
+recipes.addShaped(EnergyCrystal, [
+[EnergiumDust, EnergiumDust, EnergiumDust],
+[EnergiumDust, null, EnergiumDust],
+[EnergiumDust, EnergiumDust, EnergiumDust]]);
 
 # Lapotron Crystal
 recipes.addShaped(LapotronCrystal, [

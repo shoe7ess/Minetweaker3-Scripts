@@ -16,7 +16,7 @@
 #=======================================================================#
 
 
-# May need to import ALL IC² machines
+# May need to import ALL IC²/Gregtech Machines for this one
 import mods.ic2.Canner;
 import mods.ic2.Compressor;
 import mods.ic2.Extractor;
@@ -112,13 +112,18 @@ recipes.remove(CrushedTin);
 recipes.remove(CrushedUranium);
 recipes.remove(<gregtech:gt.metaitem.01:5019>); # Crushed Aluminium Ore
 
-# Any ore in a crafting window turns into IC² Ore 
+# Any ore in a crafting window turns into IC² Ore (or TechReborn to GT) 
 # (useful if you have multiple mod's generating the same ores)
 
 recipes.addShapeless(<IC2:blockOreTin>, [<ore:oreTin>]);
 recipes.addShapeless(<IC2:blockOreCopper>, [<ore:oreCopper>]);
 recipes.addShapeless(<IC2:blockOreLead>, [<ore:oreLead>]);
 recipes.addShapeless(<IC2:blockOreUran>, [<ore:oreUranium>]);
+recipes.addShapeless(<gregtech:gt.blockores:822>, [<ore:oreBauxite>]);
+recipes.addShapeless(<gregtech:gt.blockores:830>, [<ore:oreGalena>]);
+recipes.addShapeless(<gregtech:gt.blockores:840>, [<ore:oreTetrahedrite>]);
+recipes.addShapeless(<gregtech:gt.blockores:824>, [<techreborn:techreborn.ore:13>]);
+recipes.addShapeless(<gregtech:gt.blockores:824>, [<eng_toolbox:ore:1>]);
 
 # Those with Tinker's Construct can benefit from a way to store rubber in block form
 recipes.addShapeless(<IC2:itemRubber> * 9, [<TConstruct:GlueBlock>]);
@@ -129,6 +134,28 @@ recipes.addShapeless(<EnderIO:itemMaterial:3> * 9, [<ore:dustIron>, <ore:dustEnd
 
 #******************* IC² Recipe Additions/Changes *******************#
 
+# Shapeless Bronze Dust/Ingots (Doubling Gregtech's Output as well)
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2300> * 4, [
+[<ore:dustTin>, <ore:dustCopper>],
+[<ore:dustCopper>, <ore:dustCopper>]]);
+
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:11300> * 4, [
+[<ore:ingotTin>, <ore:ingotCopper>],
+[<ore:ingotCopper>, <ore:ingotCopper>]]);
+
+# Shaped Osmium Ingot from Nuggets Recipe
+recipes.addShaped(<gregtech:gt.metaitem.01:11083>, [
+[<ore:nuggetOsmium>, <ore:nuggetOsmium>, <ore:nuggetOsmium>],
+[<ore:nuggetOsmium>, <ore:nuggetOsmium>, <ore:nuggetOsmium>],
+[<ore:nuggetOsmium>, <ore:nuggetOsmium>, <ore:nuggetOsmium>]]);
+
+# Shaped Invar Dust/Ingots
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2302> * 3, [
+[<ore:dustIron>, <ore:dustIron>, <ore:dustNickel>]]);
+
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:11302> * 3, [
+[<ore:ingotIron>, <ore:ingotIron>, <ore:ingotNickel>]]);
+
 # MFR to IC² Sapling Exchange
 recipes.addShapeless(<IC2:blockRubSapling>, [<MineFactoryReloaded:rubberwood.sapling>]);
 recipes.addShapeless(<MineFactoryReloaded:rubberwood.sapling>, [<IC2:blockRubSapling>]);
@@ -137,7 +164,7 @@ recipes.addShapeless(<MineFactoryReloaded:rubberwood.sapling>, [<IC2:blockRubSap
 recipes.addShapeless(<IC2:itemCellEmpty> * 3, [<ore:plateTin>]);
 
 # Universal Fluid Cell
-recipes.addShapeless(<IC2:itemFluidCell> * 3, [<gregtech:gt.metaitem.01:18057>]);
+recipes.addShapeless(<IC2:itemFluidCell>, [<IC2:itemCellEmpty>]);
 
 # Electronic Circuit
 recipes.addShaped(ElectronicCircuit, [
@@ -161,6 +188,11 @@ recipes.addShaped(ElectronicCircuit * 2, [
 [<ore:wireCopper>, <ore:ingotElectrum>, <ore:wireCopper>]]);
 
 # Advanced Circuit
+recipes.addShaped(AdvancedCircuit, [
+[<ore:dustRedstone>, <ore:dustGlowstone>, <ore:dustRedstone>],
+[<ore:dustLapis>, ElectronicCircuit, <ore:dustLapis>],
+[<ore:dustRedstone>, <ore:dustGlowstone>, <ore:dustRedstone>]]);
+
 recipes.addShaped(AdvancedCircuit, [
 [<ore:dustRedstone>, <ore:dustGlowstone>, <ore:dustRedstone>],
 [<ore:dustLapis>, ElectronicCircuit, <ore:dustLapis>],
@@ -334,11 +366,18 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 [<ore:dustCoal>, <ore:dustCoal>],
 [<ore:dustCoal>, <ore:dustCoal>]]);
 
-# Refined Iron = Iron in Furnace
+# Refined Iron from Furnace
 furnace.remove(<minecraft:iron_ingot>);
 furnace.addRecipe(<IC2:itemIngot:3>, <minecraft:iron_ingot>);
+furnace.addRecipe(<IC2:itemPlates:5>, <ore:plateIron>);
 recipes.addShapeless(<IC2:itemPlates:5>, [<IC2:itemIngot:3>, ForgeHammer]);
 Compressor.addRecipe(<IC2:itemDensePlates:5>, <IC2:itemPlates:5> * 9);
+
+# Rotary Macerator Old Recipe
+recipes.addShaped(<AdvancedMachines:advancedmachines.block:0>, [
+[<IC2:itemPlates:5>, <IC2:itemPlates:5>, <IC2:itemPlates:5>],
+[<IC2:itemPlates:5>, <IC2:blockMachine:3>, <IC2:itemPlates:5>],
+[<IC2:itemPlates:5>, <IC2:blockMachine:12>, <IC2:itemPlates:5>]]);
 
 
 #======= IC²/MFR Furnace Conversions =====#
@@ -360,6 +399,7 @@ furnace.addRecipe(<gregtech:gt.metaitem.01:11880>, <IC2:itemRubber>); # Smelt ru
 #	a recipe via alloy furnace or something similar that combines nuggets with stone dust and outputs the
 #	associated crushed ore.
 
+Macerator.addRecipe(<minecraft:sand>, <ore:stoneCobble>);
 Macerator.addRecipe(<IC2:itemCrushedOre:0> * 2, <ore:oreIron>);
 Macerator.addRecipe(<IC2:itemCrushedOre:0> * 4, <ore:oreNetherIron>);
 Macerator.addRecipe(<IC2:itemCrushedOre:0> * 4, <ore:oreNetherrackIron>);
@@ -584,6 +624,15 @@ recipes.addShapeless(NANDChip, [Redstone, Redstone]);
 
 # Rubber Sheet with Forgehammer
 recipes.addShapeless(<gregtech:gt.metaitem.01:17880>, [<ore:ingotRubber>, ForgeHammer]);
+
+# Missing flint dust evolution (tiny flint dust to small flint dust to flint dust)
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:1802>, [
+[<gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>],
+[<gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>]]);
+
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2802>, [
+[<gregtech:gt.metaitem.01:1802>, <gregtech:gt.metaitem.01:1802>],
+[<gregtech:gt.metaitem.01:1802>, <gregtech:gt.metaitem.01:1802>]]);
 
 #----- IC² Machines to Gregtech Counterpart Machine Shapeless Conversions -----#
 

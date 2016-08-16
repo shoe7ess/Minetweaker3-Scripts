@@ -1,7 +1,7 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
 # Author: shoe7ess
-# Script Version: 1.5.1a
+# Script Version: 1.5.1c
 
 #=======================================================================#
 # Purpose: Make IC² and GregTech work as they did in 1.4:               #
@@ -134,7 +134,19 @@ recipes.addShapeless(<EnderIO:itemMaterial:3> * 9, [<ore:dustIron>, <ore:dustEnd
 
 #******************* IC² Recipe Additions/Changes *******************#
 
+# Remove Uran 238 Dust Furnace Recipe
+furnace.remove(<gregtech:gt.metaitem.01:11098>);
+furnace.addRecipe(<gregtech:gt.metaitem.01:11098>, <IC2:itemUran238>);
+
+# 9 Uranium 238 Nuggets = Uranium 238 Dust
+recipes.addShaped(<gregtech:gt.metaitem.01:2098>, [
+[<gregtech:gt.metaitem.01:9098>, <gregtech:gt.metaitem.01:9098>, <gregtech:gt.metaitem.01:9098>],
+[<gregtech:gt.metaitem.01:9098>, <gregtech:gt.metaitem.01:9098>, <gregtech:gt.metaitem.01:9098>],
+[<gregtech:gt.metaitem.01:9098>, <gregtech:gt.metaitem.01:9098>, <gregtech:gt.metaitem.01:9098>]]);
+
 # Shapeless Bronze Dust/Ingots (Doubling Gregtech's Output as well)
+recipes.removeShaped(<gregtech:gt.metaitem.01:2300>);
+recipes.removeShaped(<gregtech:gt.metaitem.01:11300>);
 recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2300> * 4, [
 [<ore:dustTin>, <ore:dustCopper>],
 [<ore:dustCopper>, <ore:dustCopper>]]);
@@ -155,6 +167,12 @@ recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2302> * 3, [
 
 recipes.addShapedMirrored(<gregtech:gt.metaitem.01:11302> * 3, [
 [<ore:ingotIron>, <ore:ingotIron>, <ore:ingotNickel>]]);
+
+# Need recipe for nuggets to ingots (Nickel)
+recipes.addShaped(<gregtech:gt.metaitem.01:11036>, [
+[<ore:nuggetZinc>, <ore:nuggetZinc>, <ore:nuggetZinc>],
+[<ore:nuggetZinc>, <ore:nuggetZinc>, <ore:nuggetZinc>],
+[<ore:nuggetZinc>, <ore:nuggetZinc>, <ore:nuggetZinc>]]);
 
 # MFR to IC² Sapling Exchange
 recipes.addShapeless(<IC2:blockRubSapling>, [<MineFactoryReloaded:rubberwood.sapling>]);
@@ -193,6 +211,7 @@ recipes.addShaped(AdvancedCircuit, [
 [<ore:dustLapis>, ElectronicCircuit, <ore:dustLapis>],
 [<ore:dustRedstone>, <ore:dustGlowstone>, <ore:dustRedstone>]]);
 
+# Rotary Macerator
 recipes.addShaped(AdvancedCircuit, [
 [<ore:dustRedstone>, <ore:dustGlowstone>, <ore:dustRedstone>],
 [<ore:dustLapis>, ElectronicCircuit, <ore:dustLapis>],
@@ -297,6 +316,8 @@ recipes.addShaped(EnergiumDust * 9, [
 [Redstone, DiamondDust, Redstone]]);
 
 # IC² 2x Ingot-> Double Plate Stacking possible with IC² Forge Hammer
+recipes.addShapeless(<gregtech:gt.metaitem.01:17098>, [<ore:ingotUranium>, ForgeHammer]);
+recipes.addShapeless(<gregtech:gt.metaitem.01:17098>, [<IC2:itemUran238>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18035>, [<ore:ingotCopper>, <ore:ingotCopper>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18057>, [<ore:ingotTin>, <ore:ingotTin>, ForgeHammer]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:18300>, [<ore:ingotBronze>, <ore:ingotBronze>, ForgeHammer]);
@@ -336,6 +357,7 @@ recipes.addShapeless(<gregtech:gt.metaitem.01:2822>, [<ore:oreBauxite>, ForgeHam
 recipes.addShapeless(<minecraft:dye:4> * 6, [<ore:oreLapis>, ForgeHammer]);
 recipes.addShapeless(<minecraft:dye:4> * 6, [<ore:oreLapis>, <ImmersiveEngineering:tool:0>]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:8525>, [<ore:oreSodalite>, ForgeHammer]);
+recipes.addShapeless(<IC2:itemPlates:5>, [<ore:ingotSteel>, ForgeHammer]);
 
 # RE-Battery
 recipes.addShaped(REBattery, [
@@ -367,7 +389,7 @@ recipes.addShapedMirrored(RawCarbonFibre, [
 [<ore:dustCoal>, <ore:dustCoal>]]);
 
 # Refined Iron from Furnace
-furnace.remove(<minecraft:iron_ingot>);
+furnace.remove(<gregtech:gt.metaitem.01:9032>);
 furnace.addRecipe(<IC2:itemIngot:3>, <minecraft:iron_ingot>);
 furnace.addRecipe(<IC2:itemPlates:5>, <ore:plateIron>);
 recipes.addShapeless(<IC2:itemPlates:5>, [<IC2:itemIngot:3>, ForgeHammer]);
@@ -432,12 +454,12 @@ Macerator.addRecipe(<IC2:itemCrushedOre:3> * 4, <ore:oreBlackgraniteTin>);
 Macerator.addRecipe(<IC2:itemCrushedOre:3> * 4, <ore:oreRedgraniteTin>);
 Macerator.addRecipe(<IC2:itemCrushedOre:3>, <ore:nuggetTin> * 10);
 
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 2, <ore:oreUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreNetherUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreNetherrackUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 5, <ore:oreEndstoneUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreBlackgraniteUranium>);
-Macerator.addRecipe(<gregtech:gt.metaitem.01:2098> * 4, <ore:oreRedgraniteUranium>);
+Macerator.addRecipe(<IC2:itemCrushedOre:4> * 2, <ore:oreUranium>);
+Macerator.addRecipe(<IC2:itemCrushedOre:4> * 4, <ore:oreNetherUranium>);
+Macerator.addRecipe(<IC2:itemCrushedOre:4> * 4, <ore:oreNetherrackUranium>);
+Macerator.addRecipe(<IC2:itemCrushedOre:4> * 5, <ore:oreEndstoneUranium>);
+Macerator.addRecipe(<IC2:itemCrushedOre:4> * 4, <ore:oreBlackgraniteUranium>);
+Macerator.addRecipe(<IC2:itemCrushedOre:4> * 4, <ore:oreRedgraniteUranium>);
 
 Macerator.addRecipe(<IC2:itemCrushedOre:5> * 2, <ore:oreSilver>);
 Macerator.addRecipe(<IC2:itemCrushedOre:5> * 4, <ore:oreNetherSilver>);
@@ -484,6 +506,14 @@ Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreNetherLapis>);
 Macerator.addRecipe(<minecraft:dye:4> * 30, <ore:oreEndstoneLapis>);
 Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreRedgraniteLapis>);
 Macerator.addRecipe(<minecraft:dye:4> * 24, <ore:oreBlackgraniteLapis>);
+
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5500> * 3, <ore:oreDiamond>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5500> * 5, <ore:oreNetherDiamond>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5500> * 5, <ore:oreNetherrackDiamond>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5500> * 6, <ore:oreEndstoneDiamond>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5500> * 4, <ore:oreRedgraniteDiamond>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:5500> * 4, <ore:oreBlackgraniteDiamond>);
+Compressor.addRecipe(<minecraft:diamond>, <ore:dustDiamond>);
 
 Macerator.addRecipe(<IC2:itemDust:2> * 6, <ore:oreCoal>);
 Macerator.addRecipe(<IC2:itemDust:2> * 12, <ore:oreNetherrackCoal>);
@@ -553,9 +583,40 @@ Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 8, <ore:oreEndstoneCertusQu
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 6, <ore:oreRedgraniteCertusQuartz>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:4516> * 4, <appliedenergistics2:tile.OreQuartzCharged>);
 
+# Red Garnet to Garnet Dust
+Macerator.addRecipe(<techreborn:dust:63>, <ore:gemRedGarnet>);
+
 #======= Furnace Recipes for AE2 Certus Quartz =======#
 furnace.addRecipe(<gregtech:gt.metaitem.01:8516>, <gregtech:gt.metaitem.01:2516>);
 furnace.addRecipe(<appliedenergistics2:item.ItemMultiMaterial:1>, <gregtech:gt.metaitem.01:4516>);
+
+#=== Placeholder until I figure out where this fits ===#
+furnace.addRecipe(<gregtech:gt.metaitem.01:9032> * 10, <ore:crushedIron>);
+furnace.addRecipe(<IC2:itemPlates:5>, <IC2:itemPlates:4>);
+#============ Alternate Sunnarium Piece Recipe ===================#
+# I feel that an Advanced Solar Panel should be craftable         #
+# before you're able to shell out millions of EU                  #
+# Process: Recipe = 9x Sunnarium Pieces => Compressor => Sunarium #
+#=================================================================#
+recipes.addShaped(<AdvancedSolarPanel:asp_crafting_items:9> * 9, [
+[<ore:glowstone>, <ore:blockDiamond>, <ore:glowstone>],
+[<ore:blockGlassHardened>, <ore:plateUranium>, <ore:blockGlassHardened>],
+[<ore:glowstone>, <ore:blockDiamond>, <ore:glowstone>]]);
+
+recipes.removeShaped(<AdvancedSolarPanel:asp_crafting_items:0>);
+
+Compressor.addRecipe(<AdvancedSolarPanel:asp_crafting_items:0>, <AdvancedSolarPanel:asp_crafting_items:9> * 9);
+
+Macerator.addRecipe(<AdvancedSolarPanel:asp_crafting_items:9> * 9, <AdvancedSolarPanel:asp_crafting_items:0>);
+
+# And bridging over to Gregtech's Sunnarium Dust
+Macerator.addRecipe(<gregtech:gt.metaitem.01:318>, <AdvancedSolarPanel:asp_crafting_items:9>);
+Macerator.addRecipe(<gregtech:gt.metaitem.01:2318>, <AdvancedSolarPanel:asp_crafting_items:0>);
+
+recipes.addShaped(<gregtech:gt.metaitem.01:2318>, [
+[<gregtech:gt.metaitem.01:318>, <gregtech:gt.metaitem.01:318>, <gregtech:gt.metaitem.01:318>],
+[<gregtech:gt.metaitem.01:318>, <gregtech:gt.metaitem.01:318>, <gregtech:gt.metaitem.01:318>],
+[<gregtech:gt.metaitem.01:318>, <gregtech:gt.metaitem.01:318>, <gregtech:gt.metaitem.01:318>]]);
 
 #======= IC² Extractor Changes =======#
 
@@ -613,8 +674,6 @@ AlloySmelter.addRecipe(<gregtech:gt.metaitem.01:11300>, <gregtech:gt.metaitem.01
 # Rubber to Rubber Bar
 AlloySmelter.addRecipe(<gregtech:gt.metaitem.01:11880>, <IC2:itemRubber>, null, 130, 3);
 
-
-
 #----- Miscellaneous Easier Recipes -----#
 # Steel Dust Crafting and Processing
 recipes.addShapeless(SteelDust, [<ore:dustIron>, <ore:dustCoal> * 2]);
@@ -626,13 +685,10 @@ recipes.addShapeless(NANDChip, [Redstone, Redstone]);
 recipes.addShapeless(<gregtech:gt.metaitem.01:17880>, [<ore:ingotRubber>, ForgeHammer]);
 
 # Missing flint dust evolution (tiny flint dust to small flint dust to flint dust)
-recipes.addShapedMirrored(<gregtech:gt.metaitem.01:1802>, [
-[<gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>],
-[<gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>]]);
-
-recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2802>, [
-[<gregtech:gt.metaitem.01:1802>, <gregtech:gt.metaitem.01:1802>],
-[<gregtech:gt.metaitem.01:1802>, <gregtech:gt.metaitem.01:1802>]]);
+recipes.addShaped(<gregtech:gt.metaitem.01:2802>, [
+[<gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>],
+[<gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>],
+[<gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>, <gregtech:gt.metaitem.01:802>]]);
 
 #----- IC² Machines to Gregtech Counterpart Machine Shapeless Conversions -----#
 
@@ -647,6 +703,13 @@ recipes.addShapeless(<gregtech:gt.blockmachines:23>, [<IC2:blockElectric:5>]);
 recipes.addShapeless(<gregtech:gt.blockmachines:24>, [<IC2:blockElectric:6>]);
 
 #***** Basic Machines *****#
+
+# Different Thermal Centrifuge Recipe
+recipes.addShaped(<IC2:blockMachine2:3>, [
+[<IC2:itemRecipePart:0>, <AdvancedMachines:advancedmachines.block:2>, <IC2:itemRecipePart:0>],
+[<ore:ingotIron>, <IC2:blockMachine:12>, <ore:ingotIron>],
+[<ore:ingotIron>, <IC2:itemRecipePart:1>, <ore:ingotIron>]]);
+
 # Basic Macerator
 recipes.addShapeless(<gregtech:gt.blockmachines:301>, [<IC2:blockMachine:3>]);
 # Rotary Macerator

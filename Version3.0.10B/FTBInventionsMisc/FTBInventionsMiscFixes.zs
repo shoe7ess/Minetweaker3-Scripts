@@ -1,10 +1,15 @@
 #============================================================================#
-# Name: FTBInventionsMisc.zs                                                 #
+# Name: FTBInventionsMiscFixes.zs                                            #
 # Version Information: Miscellaneous mods found in FTB's Inventions modpack  #
+#                      *See note below*                                      #
 # Author: shoe7ess                                                           #
-# Script Version: 1.0                                                        #
+# Script Version: 1.1                                                        #
 # Purpose: Waystation for recipes too specific to misc mods                  #
+# *NOTE* My install includes Gregtech, TConstruct, Immibis Mods, and many    #
+#        other mods not in FTBInventions by default, so these may not all    #
+#        apply for straight FTBInvention installs
 #============================================================================#
+
 
 import mods.ic2.Canner;
 import mods.ic2.Compressor;
@@ -47,3 +52,10 @@ import minetweaker.oredict.IOreDictEntry;
 recipes.addShaped(<additionalpipes:item.PipeItemsTeleport> * 8, [
 [<ore:gearDiamond>, <ore:glass>, <ore:gearDiamond>],
 ]);
+
+#********* TechReborn *********#
+
+#----- Cells/Items with no uses in FTB Inventions converted to Gregtech version -----#
+
+# Chlorine Cell to Gregtech Cell
+recipes.addShapeless(<gregtech:gt.metaitem.01:31023>, [<techreborn:cell:5>]);

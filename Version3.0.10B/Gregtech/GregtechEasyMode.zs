@@ -134,6 +134,27 @@ recipes.addShapeless(<EnderIO:itemMaterial:3> * 9, [<ore:dustIron>, <ore:dustEnd
 
 #******************* IC² Recipe Additions/Changes *******************#
 
+# Glass Fibre Cable
+recipes.addShaped(<IC2:itemCable:9> * 4, [
+[<ore:glass>, <ore:glass>, <ore:glass>],
+[Redstone, <ore:gemDiamond>, Redstone],
+[<ore:glass>, <ore:glass>, <ore:glass>]]);
+
+recipes.addShaped(<IC2:itemCable:9> * 6, [
+[<ore:glass>, <ore:glass>, <ore:glass>],
+[<ore:ingotSilver>, <ore:gemDiamond>, <ore:ingotSilver>],
+[<ore:glass>, <ore:glass>, <ore:glass>]]);
+
+recipes.addShaped(<IC2:itemCable:9> * 8, [
+[<ore:glass>, <ore:glass>, <ore:glass>],
+[<ore:ingotElectrum>, <ore:gemDiamond>, <ore:ingotElectrum>],
+[<ore:glass>, <ore:glass>, <ore:glass>]]);
+
+recipes.addShaped(<IC2:itemCable:9> * 10, [
+[<ore:glass>, <ore:glass>, <ore:glass>],
+[<IC2:itemDust2:2>, <ore:gemDiamond>, <IC2:itemDust2:2>],
+[<ore:glass>, <ore:glass>, <ore:glass>]]);
+
 # Remove Uran 238 Dust Furnace Recipe
 furnace.remove(<gregtech:gt.metaitem.01:11098>);
 furnace.addRecipe(<gregtech:gt.metaitem.01:11098>, <IC2:itemUran238>);
@@ -673,6 +694,8 @@ AlloySmelter.addRecipe(<gregtech:gt.metaitem.01:11300>, <gregtech:gt.metaitem.01
 //EDITCONFIG 'Gregtech/Recipes.cfg: alloysmelting {' section (default line: 3) add in"I:ic2.itemRubber_130=130" in the "ic2.*item* lines
 # Rubber to Rubber Bar
 AlloySmelter.addRecipe(<gregtech:gt.metaitem.01:11880>, <IC2:itemRubber>, null, 130, 3);
+
+
 
 #----- Miscellaneous Easier Recipes -----#
 # Steel Dust Crafting and Processing

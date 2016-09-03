@@ -3,7 +3,7 @@
 # Version Information: Miscellaneous mods found in FTB's Inventions modpack  #
 #                      *See note below*                                      #
 # Author: shoe7ess                                                           #
-# Script Version: 1.1                                                        #
+# Script Version: 1.1b                                                       #
 # Purpose: Waystation for recipes too specific to misc mods                  #
 # *NOTE* My install includes Gregtech, TConstruct, Immibis Mods, and many    #
 #        other mods not in FTBInventions by default, so these may not all    #
@@ -47,8 +47,27 @@ import mods.mfr.SludgeBoiler;
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
+
+#************ Vals **************#
+val VerdantDust = <EE3:alchemicalDust:1>;
+
+
+#********* Regular Tweaks/Fixes *********#
+furnace.addRecipe(<minecraft:dye:2>, <minecraft:cactus>);
+
+#********* IC2 *********#
+
+#--- Extractor ---#
+Extractor.addRecipe(<ExtrabiomesXL:extrabiomes.dye:2> * 3, <ExtrabiomesXL:flower1:6>);
+
+#********* Tinker's Construct *********#
+
+# Crafting Station Slab to Vanilla Workbench (full circle)
+recipes.addShapeless(<minecraft:crafting_table>, [<TConstruct:CraftingSlab>]);
+
 #********* Logistics Pipes/Additional Buildcraft Objects *********#
-// Teleport Pipe Recipe (Sans-Assembly Table)
+
+# Teleport Pipe Recipe (Sans-Assembly Table)
 recipes.addShaped(<additionalpipes:item.PipeItemsTeleport> * 8, [
 [<ore:gearDiamond>, <ore:glass>, <ore:gearDiamond>],
 ]);
@@ -59,3 +78,16 @@ recipes.addShaped(<additionalpipes:item.PipeItemsTeleport> * 8, [
 
 # Chlorine Cell to Gregtech Cell
 recipes.addShapeless(<gregtech:gt.metaitem.01:31023>, [<techreborn:cell:5>]);
+
+#********* EE3 *********#
+
+# Verdant Dust Recipe(s)
+
+recipes.addShaped(VerdantDust * 3, [
+[<minecraft:iron_ingot>, <minecraft:iron_ingot>, <minecraft:iron_ingot>],
+]);
+recipes.addShaped(VerdantDust * 2, [
+[<ore:ingotCopper>, <ore:ingotCopper>],
+]);
+
+recipes.addShapeless(VerdantDust, [<eng_toolbox:gem:0>]);

@@ -53,12 +53,29 @@ val VerdantDust = <EE3:alchemicalDust:1>;
 
 
 #********* Regular Tweaks/Fixes *********#
+
+# Furnace recipe fixing cactus turning into wrong dye in furnace
+furnace.remove(<gregtech:gt.metaitem.01:2526>);
+furnace.addRecipe(<gregtech:gt.metaitem.01:2526>, <ore:oreLapis>);
 furnace.addRecipe(<minecraft:dye:2>, <minecraft:cactus>);
+furnace.addRecipe(<minecraft:dye:2>, <ExtrabiomesXL:extrabiomes.paste>);
+furnace.addRecipe(<minecraft:dye:2>, <eng_toolbox:hempPlant>);
+furnace.addRecipe(<minecraft:dye:2>, <ore:reedTypha>);
+recipes.addShaped(<minecraft:paper> * 3, [
+[<ore:reedTypha>, <ore:reedTypha>, <ore:reedTypha>],
+]);
+
+# Shapeless recipe Glowstone Block to Glowstone Powder
+recipes.addShapeless(<minecraft:glowstone_dust> * 4, [<minecraft:glowstone>]);
 
 #********* IC2 *********#
 
 #--- Extractor ---#
 Extractor.addRecipe(<ExtrabiomesXL:extrabiomes.dye:2> * 3, <ExtrabiomesXL:flower1:6>);
+Extractor.addRecipe(<minecraft:dye:2> * 4, <eng_toolbox:hempPlant>);
+Extractor.addRecipe(<minecraft:dye:2> * 4, <ore:reedTypha>);
+Extractor.addRecipe(<minecraft:dye:2> * 6, <minecraft:cactus>);
+Extractor.addRecipe(<minecraft:dye:2> * 6, <ExtrabiomesXL:extrabiomes.paste>);
 
 #********* Tinker's Construct *********#
 

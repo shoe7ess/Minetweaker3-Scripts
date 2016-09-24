@@ -1,22 +1,31 @@
 # Name: GregtechEasyMode.zs
 # Version Information: Minetweaker 3 v3.0.10b, GTTweaker 1.7.10 v1.4.1, Minecraft v1.7.10
 # Author: shoe7ess
-# Script Version: 1.5.2
+# Script Version: 1.5.4
 
 #=======================================================================#
 # Purpose: Make IC² and GregTech work as they did in 1.4:               #
 # i.e. Create IC² T1 Machines > then T2 Machines > and finally Advanced # 
 #      Gregtech Machines is possible again                              #
-# Also: Adds easier integration between Tech Reborn, MFR, etc, with IC2 #
-#       crafting and machine recipes									#
+# Also: Adds easier integration between Tech Reborn, MFR, etc, with     #
+#       alternate IC2 item and machine recipes                          #
+#       crafting and machine recipes                                    #
 # Next: In order for the rubber recipe changes to work, you may have to #
 #		type /mt reload													#
+#       I also STRONGLY suggest downloading TabulaRasa, as from 1.5.4+  #
+#       of this config I will be incorporating recipes that some gives  #
+#       ores more use or modifying the chains from ores to ingots in a  #
+#		few recipes (there will be a disclaimer for those recipes and I #
+#       will try my best to allow those without TabulaRasa to benefit   #
+#       from these changes wherever possible (albeit at a higher price) #
+#		*The Tabula Rasa config and necessary textures will be available#
+#        where this config resides (open TabulaRasa.jar in winrar/zip   #
+#        and copy the "assets" folder into the .jar)                    #
 # Finally: There are instructions for getting the GT machine recipes to #
 #       work (involving changing Gregtech's Recipe.cfg file             #
 #=======================================================================#
 
-
-# May need to import ALL IC²/Gregtech Machines for this one
+# Import ALL THE MACHINES
 import mods.ic2.Canner;
 import mods.ic2.Compressor;
 import mods.ic2.Extractor;
@@ -49,7 +58,7 @@ import mods.gregtech.VacuumFreezer;
 import minetweaker.item.IIngredient;
 import minetweaker.oredict.IOreDictEntry;
 
-print("Initializing 'GregtechEasyMode.zs' with IC2 Recipe Changes Minetweaker3 Script");
+print("Initializing 'GregtechEasyMode.zs' Minetweaker3 Script");
 
 # General Coal to Charcoal Converter (Just a little helpful script that allows coal/charcoal to be placed in a crafting grid and converted to its' counterpart)
 recipes.addShapeless(<minecraft:coal:0>, [<minecraft:coal:1>]);
@@ -125,7 +134,7 @@ recipes.addShapeless(<gregtech:gt.blockores:840>, [<ore:oreTetrahedrite>]);
 recipes.addShapeless(<gregtech:gt.blockores:824>, [<techreborn:techreborn.ore:13>]);
 recipes.addShapeless(<gregtech:gt.blockores:824>, [<eng_toolbox:ore:1>]);
 
-# Those with Tinker's Construct can benefit from a way to store rubber in block form
+# Those with Tinkers' Construct can benefit from a way to store rubber in block form
 recipes.addShapeless(<IC2:itemRubber> * 9, [<TConstruct:GlueBlock>]);
 recipes.addShapeless(<TConstruct:GlueBlock>, [<IC2:itemRubber> * 9]);
 
@@ -189,6 +198,13 @@ recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2302> * 3, [
 recipes.addShapedMirrored(<gregtech:gt.metaitem.01:11302> * 3, [
 [<ore:ingotIron>, <ore:ingotIron>, <ore:ingotNickel>]]);
 
+# Shaped Electrum Ingots
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:11303> * 2, [
+[<ore:ingotSilver>, <ore:ingotGold>, null]]);
+
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:11303> * 2, [
+[<ore:ingotGold>, <ore:ingotSilver>, null]]);
+
 # Need recipe for nuggets to ingots (Nickel)
 recipes.addShaped(<gregtech:gt.metaitem.01:11036>, [
 [<ore:nuggetZinc>, <ore:nuggetZinc>, <ore:nuggetZinc>],
@@ -200,10 +216,13 @@ recipes.addShapeless(<IC2:blockRubSapling>, [<MineFactoryReloaded:rubberwood.sap
 recipes.addShapeless(<MineFactoryReloaded:rubberwood.sapling>, [<IC2:blockRubSapling>]);
 
 # Empty Cell Recipe
-recipes.addShapeless(<IC2:itemCellEmpty> * 3, [<ore:plateTin>]);
-
+recipes.addShapeless(<IC2:itemCellEmpty> * 2, [<ore:plateTin>]);
+MetalFormer.addExtrudingRecipe(<IC2:itemCellEmpty> * 4, <ore:plateTin>);
 # Universal Fluid Cell
 recipes.addShapeless(<IC2:itemFluidCell>, [<IC2:itemCellEmpty>]);
+
+# 1:1 Universal Fluid Cell to TechReborn's Cell
+recipes.addShapeless(<techreborn:cell:34>, [<IC2:itemFluidCell>]);
 
 # Electronic Circuit
 recipes.addShaped(ElectronicCircuit, [
@@ -238,8 +257,37 @@ recipes.addShaped(AdvancedCircuit, [
 [<ore:dustLapis>, ElectronicCircuit, <ore:dustLapis>],
 [<ore:dustRedstone>, <ore:dustGlowstone>, <ore:dustRedstone>]]);
 
-#----- Machine Casings Redone -----#
+# Red Garnet to Garnet Dust
+Macerator.addRecipe(<techreborn:dust:63>, <ore:gemRedGarnet>);
 
+# Small Iridium Dust to Regular Iridum Dust Recipe
+recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2084>, [
+[<gregtech:gt.metaitem.01:84>, <gregtech:gt.metaitem.01:84>],
+[<gregtech:gt.metaitem.01:84>, <gregtech:gt.metaitem.01:84>]]);
+
+# Adamantium nuggets to adamantium ingots (shaped)
+recipes.addShaped(<gregtech:gt.metaitem.01:11319>, [
+[<ore:nuggetAdamantium>, <ore:nuggetAdamantium>, <ore:nuggetAdamantium>],
+[<ore:nuggetAdamantium>, <ore:nuggetAdamantium>, <ore:nuggetAdamantium>],
+[<ore:nuggetAdamantium>, <ore:nuggetAdamantium>, <ore:nuggetAdamantium>]]);
+
+recipes.addShaped(<gregtech:gt.metaitem.01:11319>, [
+[<ore:nuggetAdamant>, <ore:nuggetAdamant>, <ore:nuggetAdamant>],
+[<ore:nuggetAdamant>, <ore:nuggetAdamant>, <ore:nuggetAdamant>],
+[<ore:nuggetAdamant>, <ore:nuggetAdamant>, <ore:nuggetAdamant>]]);
+
+recipes.addShaped(<gregtech:gt.metaitem.01:11319>, [
+[<ore:nuggetAdamantine>, <ore:nuggetAdamantine>, <ore:nuggetAdamantine>],
+[<ore:nuggetAdamantine>, <ore:nuggetAdamantine>, <ore:nuggetAdamantine>],
+[<ore:nuggetAdamantine>, <ore:nuggetAdamantine>, <ore:nuggetAdamantine>]]);
+
+# Recipe for Small Silver dust to Silver Dust
+recipes.addShaped(<gregtech:gt.metaitem.01:2054>, [
+[<ore:dustTinySilver>, <ore:dustTinySilver>, <ore:dustTinySilver>],
+[<ore:dustTinySilver>, <ore:dustTinySilver>, <ore:dustTinySilver>],
+[<ore:dustTinySilver>, <ore:dustTinySilver>, <ore:dustTinySilver>]]);
+
+#----- Machine Casings Redone -----#
 # Basic Machine Casing (Just 8 Iron Plates in a circle)
 recipes.addShaped(MachineCasing, [
 [IronPlate, IronPlate, IronPlate],
@@ -422,9 +470,31 @@ recipes.addShaped(<AdvancedMachines:advancedmachines.block:0>, [
 [<IC2:itemPlates:5>, <IC2:blockMachine:3>, <IC2:itemPlates:5>],
 [<IC2:itemPlates:5>, <IC2:blockMachine:12>, <IC2:itemPlates:5>]]);
 
+# Stone Dust to Cobblestone via Compressing
+Compressor.addRecipe(<minecraft:cobblestone>, <ore:dustStone> * 4);
+recipes.addShapedMirrored(<minecraft:cobblestone>, [
+[<ore:dustStone>, <ore:dustStone>],
+[<ore:dustStone>, <ore:dustStone>]]);
+
+#======= Tinkers' Construct ======#
+# Make Ender IO's Fused Quartz via smelting in Tinker's Construct by smelting quartz to its chemical makeup (silicon)
+# This opens up the avenue of using quartz in the smeltery and creating raw silicon for Ender IO with it as well
+//InputStack, OutputFluid, TemperatureAmount, /BlockRender
+mods.tconstruct.Smeltery.addMelting(<ore:craftingQuartz>, <liquid:silicon> * 60, 400, <chisel:paperwall_block:7>);
+mods.tconstruct.Smeltery.addMelting(<ore:blockQuartz>, <liquid:silicon> * 240, 600, <chisel:paperwall_block:7>);
+mods.tconstruct.Smeltery.addMelting(<appliedenergistics2:tile.BlockQuartz>, <liquid:silicon> * 240, 600, <chisel:paperwall_block:7>);
+
+//OutputStack, InputFluid, /CastStack, /ConsumeCast, Time in Ticks
+mods.tconstruct.Casting.addBasinRecipe(<EnderIO:blockFusedQuartz>, <liquid:silicon> * 240, <minecraft:glass>, true, 240);
+
+//OutputStack, InputFluid, CastStack, ConsumeCast, Time in Ticks
+mods.tconstruct.Casting.addTableRecipe(<EnderIO:itemMaterial:0>, <liquid:silicon> * 15, null, false, 40);
+
+# Shapeless conversion between Ender IO and Project Red Silicon
+recipes.addShapeless(<ProjRed|Core:projectred.core.part:12>, [<EnderIO:itemMaterial:0>]);
+recipes.addShapeless(<EnderIO:itemMaterial:0>, [<ProjRed|Core:projectred.core.part:12>]);
 
 #======= IC²/MFR Furnace Conversions =====#
-
 # MFR Raw Rubber = Rubber
 furnace.remove(<gregtech:gt.metaitem.01:11880>); # Original Rubber Ingot Furnace Recipe
 furnace.remove(<gregtech:gt.metaitem.01:2874>); # Polyethylene pulp
@@ -608,20 +678,12 @@ Macerator.addRecipe(<techreborn:crushedore:8> * 2, <ore:oreEndstoneIridium>);
 Macerator.addRecipe(<techreborn:crushedore:8> * 2, <ore:oreBlackgraniteIridium>);
 Macerator.addRecipe(<techreborn:crushedore:8> * 2, <ore:oreRedgraniteIridium>);
 
-# Small Iridium Dust to Regular Iridum Dust Recipe
-recipes.addShapedMirrored(<gregtech:gt.metaitem.01:2084>, [
-[<gregtech:gt.metaitem.01:84>, <gregtech:gt.metaitem.01:84>],
-[<gregtech:gt.metaitem.01:84>, <gregtech:gt.metaitem.01:84>]]);
-
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 4, <appliedenergistics2:tile.OreQuartz>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 6, <ore:oreNetherrackCertusQuartz>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 6, <ore:oreBlackgraniteCertusQuartz>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 8, <ore:oreEndstoneCertusQuartz>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:2516> * 6, <ore:oreRedgraniteCertusQuartz>);
 Macerator.addRecipe(<gregtech:gt.metaitem.01:4516> * 4, <appliedenergistics2:tile.OreQuartzCharged>);
-
-# Red Garnet to Garnet Dust
-Macerator.addRecipe(<techreborn:dust:63>, <ore:gemRedGarnet>);
 
 #======= Furnace Recipes for AE2 Certus Quartz =======#
 furnace.addRecipe(<gregtech:gt.metaitem.01:8516>, <gregtech:gt.metaitem.01:2516>);
@@ -679,7 +741,25 @@ ThermalCentrifuge.addRecipe([<gregtech:gt.metaitem.01:7822>, <gregtech:gt.metait
 # Recipe for Nether Tennantite (Generated by Nether Ores, has no use without Metallurgy)
 # That said, the chemical composition for Tennantite is roughly:
 # 47.5% Copper, 20.37% Arsenic, and 28.3% Sulfur, so we can add a recipe for it...
-ThermalCentrifuge.addRecipe([<gregtech:gt.metaitem.01:2039>, <gregtech:gt.metaitem.01:2035> * 4, <gregtech:gt.metaitem.01:2022>], <NetherOres:tile.netherores.ore.1:12>, 320);
+ThermalCentrifuge.addRecipe([<gregtech:gt.metaitem.01:2039>, <gregtech:gt.metaitem.01:2035> * 4, <gregtech:gt.metaitem.01:2022>], <NetherOres:tile.netherores.ore.1:12>, 1700);
+
+# TabulaRasa Recipes (in this case items for the four stages of ore production have been added for those without Metallurgy) #
+ThermalCentrifuge.addRecipe([<gregtech:gt.metaitem.01:2039>, <gregtech:gt.metaitem.01:2035> * 4, <gregtech:gt.metaitem.01:2022>], <TabulaRasa:RasaItem0:2>, 560);
+
+furnace.addRecipe(<TabulaRasa:RasaBlock0:1> * 2, <NetherOres:tile.netherores.ore.1:12>);
+Macerator.addRecipe(<TabulaRasa:RasaItem0:0> * 4, <NetherOres:tile.netherores.ore.1:12>);
+Macerator.addRecipe(<TabulaRasa:RasaItem0:2>, <TabulaRasa:RasaItem0:0>);
+Macerator.addRecipe(<TabulaRasa:RasaItem0:0> * 2, <TabulaRasa:RasaBlock0:1>);
+furnace.addRecipe(<TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaBlock0:1>);
+furnace.addRecipe(<TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaItem0:2>);
+
+recipes.addShaped(<TabulaRasa:RasaBlock0:0>, [
+[<TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaItem0:4>],
+[<TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaItem0:4>],
+[<TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaItem0:4>, <TabulaRasa:RasaItem0:4>]]);
+
+Compressor.addRecipe(<TabulaRasa:RasaBlock0:0>, <TabulaRasa:RasaItem0:4> * 9);
+
 # Gregtech Centrifuge - add I:oreNetherTennantite_400=400 under Centrifuge section of Gregtech's Recipes
 //OutputArray, InputFluid, InputStack, InputCell, OutputFluid, OutputArrayChances, Time in Ticks, EnergyUsage
 mods.gregtech.Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2039>, <gregtech:gt.metaitem.01:2035> * 4, <gregtech:gt.metaitem.01:2022>], null,  <NetherOres:tile.netherores.ore.1:12>, null, null, [10000, 10000, 10000], 400, 10);
@@ -687,7 +767,8 @@ mods.gregtech.Centrifuge.addRecipe([<gregtech:gt.metaitem.01:2039>, <gregtech:gt
 #-=-=- Storage Blocks De-craft to ingots -=-=-#
 
 # Iron Block (Shaped because shapeless gives dust) - Place Far Left/Right of Crafting Grid
-# ~ Had to use block + ingot to circumvent iron dust decrafting default
+# ~ Had to use block + ingot to circumvent iron dust decrafting default, if you allow storage block decrafting in GT config
+#   you may not have this issue; however even with SB decrafting enabled I still needed to add this for whatever reason
 recipes.addShapedMirrored(<minecraft:iron_ingot> * 10, [
 [<minecraft:iron_block>, <minecraft:iron_ingot>]]);
 
